@@ -169,6 +169,120 @@
       line-height: 1.7;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
+
+    /* ========== RESPONSIVE MOBILE MODE ========== */
+@media (max-width: 768px) {
+
+  body {
+    flex-direction: column;
+    height: auto;
+  }
+
+  /* Sidebar jadi NAVBAR atas */
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    padding-bottom: 10px;
+  }
+
+  .sidebar h2 {
+    text-align: left;
+    padding: 15px 20px;
+    font-size: 18px;
+    border-bottom: none;
+  }
+
+  .menu {
+    flex-direction: row;
+    justify-content: left;
+    padding-left: 20px;
+    gap: 15px;
+  }
+
+  .menu a {
+    background: none;
+    padding: 10px 0;
+    border: none;
+    color: white;
+    font-size: 15px;
+  }
+
+  .menu a:hover {
+    background: none;
+    color: #d1e4f3;
+  }
+
+  .logout {
+    display: none;
+  }
+
+  /* Main content turun ke bawah */
+  .main-content {
+    margin-left: 0;
+  }
+
+  /* Header user jadi di tengah */
+  .header {
+    justify-content: center;
+    flex-direction: column;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .header img {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 5px;
+  }
+
+  .content {
+    margin: 15px;
+    padding: 18px;
+  }
+
+  .breadcrumb {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  /* Video responsive penuh */
+  .video-box,
+  .video-desc,
+  .video-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .video-box iframe {
+    height: 220px; /* tinggi ideal HP */
+  }
+
+  .video-title {
+    font-size: 14px;
+    padding: 8px 0;
+  }
+}
+
+/* ========== EXTRA SMALL DEVICES (<=480px) ========== */
+@media (max-width: 480px) {
+
+  .sidebar h2 { font-size: 16px; }
+
+  .menu a {
+    font-size: 13px;
+  }
+
+  .header span { font-size: 14px; }
+
+  .breadcrumb { font-size: 12px; }
+
+  .video-box iframe {
+    height: 200px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -217,3 +331,4 @@
   </div>
 </body>
 </html>
+
