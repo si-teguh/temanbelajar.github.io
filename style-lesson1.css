@@ -1,0 +1,251 @@
+/* ==========================================================
+   GLOBAL
+========================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  height: 100vh;
+  background: #f4f4f4;
+}
+
+/* ==========================================================
+   SIDEBAR
+========================================================== */
+.sidebar {
+  width: 200px;
+  background: #4e6b82;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  inset: 0 auto 0 0;
+}
+
+.sidebar h2 {
+  padding: 25px 20px;
+  font-size: 22px;
+  font-weight: bold;
+  border-bottom: 1px solid #3d5568;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #fff;
+  padding: 15px 20px;
+  background: #3d5568;
+  border-bottom: 1px solid #2e3f4d;
+  transition: 0.3s;
+}
+
+.menu a:hover {
+  background: #2f4557;
+}
+
+.logout {
+  background: #3d3d3d;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout:hover {
+  background: #2f2f2f;
+}
+
+/* ==========================================================
+   MAIN CONTENT
+========================================================== */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 200px;
+}
+
+.header {
+  background: #739bb2;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 15px 30px;
+}
+
+.header img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.content {
+  flex: 1;
+  padding: 30px 50px;
+  background: #fff;
+  margin: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.content p,
+.content ul {
+  line-height: 1.7;
+  color: #333;
+}
+
+.content ul {
+  margin-left: 20px;
+}
+
+.content li {
+  margin-bottom: 8px;
+}
+
+/* ==========================================================
+   BREADCRUMB
+========================================================== */
+.breadcrumb {
+  font-size: 14px;
+  background: #e6e6e6;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.breadcrumb .link {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s;
+}
+
+.breadcrumb .link:hover {
+  color: #2f4557;
+}
+
+/* ==========================================================
+   VIDEO + QUIZ LINK
+========================================================== */
+.video-container {
+  margin: 20px 0;
+}
+
+.link-quiz {
+  display: inline-block;
+  margin-top: 15px;
+  text-decoration: none;
+  color: #3366cc;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.link-quiz:hover {
+  color: #1a3f8a;
+  text-decoration: underline;
+}
+
+/* ==========================================================
+   RESPONSIVE TABLET
+========================================================== */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .sidebar h2 {
+    font-size: 18px;
+    padding: 10px 0;
+    border: none;
+  }
+
+  .menu {
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .menu a {
+    background: none;
+    border: none;
+    padding: 10px 15px;
+  }
+
+  .menu a:hover {
+    background: rgba(255,255,255,0.2);
+    border-radius: 4px;
+  }
+
+  .logout {
+    display: none;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .content {
+    margin: 20px;
+    padding: 20px;
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE HP KECIL
+========================================================== */
+@media (max-width: 480px) {
+  .menu a {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .header img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .content {
+    margin: 15px;
+    padding: 15px;
+  }
+
+  p, 
+  ul li {
+    font-size: 13px;
+  }
+}
+/* Di dalam file style-lesson2.css */
+
+.video-container {
+    text-align: center; /* Ini menengahkan elemen di dalamnya */
+    margin-top: 20px; /* Tambah sedikit jarak atas */
+    margin-bottom: 20px; /* Tambah sedikit jarak bawah */
+}
+
+.video-container video {
+    max-width: 100%; /* Memastikan video responsif di layar kecil */
+    height: auto;
+}
