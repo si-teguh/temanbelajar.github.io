@@ -1,0 +1,138 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+/* ================= SIDEBAR (DESKTOP) ================= */
+.sidebar {
+  width: 200px;
+  background-color: #4e6b82;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  /* FIXED SIDEBAR */
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.sidebar h2 {
+  padding: 25px 20px;
+  font-size: 22px;
+  font-weight: bold;
+  border-bottom: 1px solid #3d5568;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu a {
+  text-decoration: none;
+  color: white;
+  padding: 15px 20px;
+  background-color: #3d5568;
+  border-bottom: 1px solid #2e3f4d;
+  transition: background-color 0.3s;
+}
+
+.menu a:hover {
+  background-color: #2f4557;
+}
+
+.logout {
+  background-color: #3d3d3d;
+  padding: 15px 20px;
+  cursor: pointer;
+}
+
+.logout:hover {
+  background-color: #2f2f2f;
+}
+
+/* ================= MAIN CONTENT ================= */
+.main-content {
+  flex: 1;
+  margin-left: 200px; /* memberi ruang sidebar */
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+.header {
+  background-color: #739bb2;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+.header img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* CONTENT */
+.content {
+  flex: 1;
+  padding: 30px 50px;
+  background: white;
+  margin: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow-y: auto;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  background: #e6e6e6;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 25px;
+}
+
+.breadcrumb .link {
+  cursor: pointer;
+  color: #444;
+  transition: color 0.3s;
+}
+
+.breadcrumb .link:hover {
+  color: #2f4557;
+}
+
+p, ul, ol, li {
+  line-height: 1.7;
+  color: #333;
+}
+
+a.link-quiz {
+  display: inline-block;
+  margin-top: 15px;
+  color: #3366cc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a.link-quiz:hover {
+  text-decoration: underline;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+
+  body { flex-direction: column;

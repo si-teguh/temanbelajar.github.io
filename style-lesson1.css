@@ -249,3 +249,16 @@ body {
     max-width: 100%; /* Memastikan video responsif di layar kecil */
     height: auto;
 }
+.link-quiz {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  padding: 12px;
+  background: #4e6b82;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: 0.3s;
+  opacity: 0.5;
+  pointer-events: none;
+}

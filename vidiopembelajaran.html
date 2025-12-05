@@ -4,324 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Video Pembelajaran - Teman Belajar</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      height: 100vh;
-      background-color: #f4f4f4;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      width: 200px;
-      background-color: #4e6b82;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
-    }
-
-    .sidebar h2 {
-      padding: 20px;
-      font-size: 20px;
-      background-color: #4e6b82;
-      border-bottom: 1px solid #3d5568;
-      color: white;
-      cursor: default;
-    }
-
-    .menu {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .menu a {
-      text-decoration: none;
-      color: white;
-      padding: 15px 20px;
-      background-color: #3d5568;
-      border-bottom: 1px solid #2e3f4d;
-      transition: 0.3s;
-    }
-
-    .menu a:hover {
-      background-color: #2f4557;
-    }
-
-    .logout {
-      background-color: #3d3d3d;
-      padding: 15px 20px;
-      text-align: left;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .logout:hover {
-      background-color: #2f2f2f;
-    }
-
-    /* Main content */
-    .main-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      margin-left: 200px;
-      background-color: #f4f4f4;
-    }
-
-    /* Header */
-    .header {
-      background-color: #739bb2;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 15px 30px;
-    }
-
-    .header img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: #ccc;
-      margin-right: 10px;
-      cursor: pointer;
-      transition: opacity 0.3s;
-    }
-
-    .header span {
-      font-size: 16px;
-      cursor: pointer;
-      transition: opacity 0.3s;
-    }
-
-    .header img:hover,
-    .header span:hover { opacity: 0.8; }
-
-    /* Content */
-    .content {
-      flex: 1;
-      padding: 30px 50px;
-      overflow-y: auto;
-      background-color: #ffffff;
-      margin: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .breadcrumb {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 25px;
-      background: #e6e6e6;
-      padding: 10px 15px;
-      border-radius: 4px;
-    }
-
-    /* Video Section */
-    .video-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-    }
-
-    .video-box {
-      background: #3d5568;
-      border-radius: 8px;
-      overflow: hidden;
-      width: 80%;
-      max-width: 800px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-    }
-
-    .video-box iframe {
-      width: 100%;
-      height: 450px;
-      border: none;
-    }
-
-    .video-title {
-      background-color: #d1d5d8;
-      padding: 10px;
-      font-weight: bold;
-      text-align: center;
-      color: #2f2f2f;
-    }
-
-    /* Deskripsi */
-    .video-desc {
-      width: 80%;
-      max-width: 800px;
-      background-color: #f9f9f9;
-      border-left: 5px solid #4e6b82;
-      padding: 15px 20px;
-      border-radius: 4px;
-      font-size: 15px;
-      color: #333;
-      line-height: 1.7;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    /* 🔹 Tambahkan efek pointer tanpa ubah desain */
-    .breadcrumb .link {
-      cursor: pointer;
-      color: inherit; /* tetap warna asli */
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    /* 🔹 Efek hover halus */
-    .breadcrumb .link:hover {
-      color: #2f4557; /* sedikit lebih gelap saat diarahkan */
-    }
-
-    /* ==================== 🔹 RESPONSIVE DESIGN UNTUK HP 🔹 ==================== */
-@media (max-width: 768px) {
-
-  body {
-    flex-direction: column;
-    height: auto;
-  }
-
-  /* Sidebar berubah menjadi navbar di atas */
-  .sidebar {
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-
-  .sidebar h2 {
-    font-size: 18px;
-    padding: 10px 0;
-    border-bottom: none;
-  }
-
-  .menu {
-    flex-direction: row;
-    gap: 15px;
-  }
-
-  .menu a {
-    background: none;
-    border: none;
-    padding: 10px 15px;
-    color: white;
-    font-size: 14px;
-  }
-
-  .menu a:hover {
-    background-color: rgba(255,255,255,0.2);
-    border-radius: 4px;
-  }
-
-  .logout {
-    display: none;
-  }
-
-  /* Header pengguna */
-  .header {
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    padding: 20px;
-    background-color: #739bb2;
-  }
-
-  .header img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 8px;
-  }
-
-  .header span {
-    font-size: 15px;
-    color: white;
-    font-weight: bold;
-  }
-
-  /* Konten */
-  .main-content {
-    margin-left: 0;
-  }
-
-  .content {
-    margin: 20px;
-    padding: 20px;
-    border-radius: 10px;
-  }
-
-  .content h2 {
-    text-align: center;
-    font-size: 20px;
-  }
-
-  .breadcrumb {
-    font-size: 13px;
-    padding: 8px;
-    margin-bottom: 10px;
-  }
-
-  p {
-    font-size: 14px;
-  }
-
-  ul li {
-    font-size: 14px;
-  }
-
-  a.link-quiz {
-    display: block;
-    text-align: center;
-    font-size: 15px;
-    margin-top: 20px;
-  }
-}
-
-/* 📱 Extra Small (HP kecil: 480px ke bawah) */
-@media (max-width: 480px) {
-
-  .menu a {
-    font-size: 12px;
-    padding: 8px;
-  }
-
-  .header img {
-    width: 55px;
-    height: 55px;
-  }
-
-  .header span {
-    font-size: 14px;
-  }
-
-  .content {
-    margin: 15px;
-    padding: 15px;
-  }
-
-  .content h2 {
-    font-size: 18px;
-  }
-
-  p, ul li {
-    font-size: 13px;
-  }
-}
-
-  </style>
+  <link rel="stylesheet" href="style-vidio.css">
 </head>
 <body>
 
@@ -339,42 +22,37 @@
 
   <!-- Main Content -->
   <div class="main-content">
+
     <div class="header">
       <img src="assets/homepage/ORANG.png" alt="User">
       <span>Fadhil Sirojul Masruro</span>
     </div>
 
     <div class="content">
+
       <div class="breadcrumb">
-        <span class="link" onclick="window.location.href='pembelajaran.html'">Pembelajaran</span> 
-        
-        <span class="link" onclick="window.location.href='">/ Video Pembelajaran</span>
+        <span class="link" onclick="window.location.href='pembelajaran.html'">Pembelajaran</span> /
+        <span class="link">Video Pembelajaran</span>
       </div>
 
-  <p>Silahkan Vidio ini Akses oleh Temen Temen, dan Quiznya di Selesaikan</p>    
-      
-  <div style="position:relative; width:100%; max-width:1088px; margin:auto;">
-    <iframe 
-        src="https://kelompok5.h5p.com/content/1292761193849893979/embed"
-        aria-label="Vidio Pembelajaran AI"
-        width="1088"
-        height="637"
-        frameborder="0"
-        allowfullscreen="allowfullscreen"
-        allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *">
-    </iframe>
+      <p>Silahkan video ini diakses oleh Teman-teman, dan Quiznya diselesaikan.</p>
 
-    <script 
-        src="https://kelompok5.h5p.com/js/h5p-resizer.js" 
-        charset="UTF-8">
-    </script>
-    <!-- Akhir Embed H5P -->
-        </div>
+      <div style="position:relative; width:100%; max-width:1088px; margin:auto;">
+        <iframe 
+          src="https://kelompok5.h5p.com/content/1292761193849893979/embed"
+          aria-label="Video Pembelajaran AI"
+          width="1088"
+          height="637"
+          frameborder="0"
+          allowfullscreen="allowfullscreen"
+          allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *">
+        </iframe>
+
+        <script src="https://kelompok5.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>
       </div>
+
     </div>
   </div>
+
 </body>
 </html>
-
-
-
