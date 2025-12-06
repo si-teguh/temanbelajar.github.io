@@ -54,3 +54,11 @@ function onYouTubeIframeAPIReady() {
     }
   });
 }
+// Ketika tombol selesai ditekan → simpan progress
+const btnSelesai = document.getElementById("btnSelesai");
+
+btnSelesai.addEventListener("click", function () {
+    localStorage.setItem("lesson1_done", "true");
+    alert("Pertemuan 1 telah ditandai selesai!");
+});
+
