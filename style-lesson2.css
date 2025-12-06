@@ -330,3 +330,8 @@ li {
     max-width: 100%; /* Memastikan video responsif di layar kecil */
     height: auto;
 }
+.selesai-btn.disabled {
+    background: gray;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
