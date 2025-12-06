@@ -113,3 +113,27 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.innerText = "Selesai & Tandai Pertemuan";
     }
 });
+// =======================
+// Developer Panel Shortcut
+// =======================
+document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.altKey && e.key === 'd') {
+        const panel = document.getElementById("devPanel");
+        panel.style.display = (panel.style.display === "none" || panel.style.display === "") 
+            ? "block" 
+            : "none";
+    }
+});
+document.addEventListener("DOMContentLoaded", function() {
+    const btnReset = document.getElementById("btnResetDev");
+
+    if (btnReset) {
+        btnReset.addEventListener("click", function () {
+            if (confirm("Yakin reset semua progress siswa?")) {
+                localStorage.clear();    // Hapus semua progres
+                alert("Progress telah direset!");
+                location.reload();       // Reload agar tombol kembali normal
+            }
+        });
+    }
+});
