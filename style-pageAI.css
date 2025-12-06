@@ -252,3 +252,11 @@ h1 {
   .header span { font-size: 14px; }
   .content { margin: 15px; padding: 15px; }
 }
+/* Card Locked */
+.card.locked {
+  pointer-events: none;
+  opacity: 0.5;
+  filter: grayscale(100%);
+  cursor: not-allowed;
+}
+

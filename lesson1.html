@@ -30,7 +30,7 @@
       <div class="breadcrumb">
         <span class="link" onclick="window.location.href='pembelajaran.html'">Pembelajaran</span>
         <span class="link" onclick="window.location.href='pageAI.html'">/ Artificial Intelligence</span>
-        <span class="link" onclick="window.location.href='lesson1'">/ Pertemuan Pertama</span>
+        <span class="link" onclick="window.location.href='lesson1.html'">/ Pertemuan Pertama</span>
       </div>
 
       <h2>Ragam AI dan Jenis Kemampuannya</h2>
@@ -46,17 +46,9 @@
       <p><strong>Berikut tiga jenis AI jika dilihat dari kemampuannya:</strong></p>
 
       <ul>
-        <li><strong>1. AI Lemah (Narrow AI)</strong><br>
-          AI yang hanya bisa melakukan satu tugas khusus.
-        </li>
-
-        <li><strong>2. AI Kuat (General AI)</strong><br>
-          AI dengan kemampuan seperti manusia — masih berupa konsep.
-        </li>
-
-        <li><strong>3. Superintelligence</strong><br>
-          AI yang jauh lebih pintar dari manusia — masih fiksi ilmiah.
-        </li>
+        <li><strong>1. AI Lemah (Narrow AI)</strong><br>AI yang hanya bisa melakukan satu tugas khusus.</li>
+        <li><strong>2. AI Kuat (General AI)</strong><br>AI dengan kemampuan seperti manusia — masih berupa konsep.</li>
+        <li><strong>3. Superintelligence</strong><br>AI yang jauh lebih pintar dari manusia — masih fiksi ilmiah.</li>
       </ul>
 
       <p><strong>Berikut tiga jenis AI jika dilihat Berdasarkan Fungsinya:</strong></p>
@@ -87,81 +79,22 @@
 
       <div style="display: flex; justify-content: center; margin: 20px 0;">
         <iframe 
-            id="videoAI"
-            width="720" 
-            height="405"
-            src="https://www.youtube.com/embed/Rn-YBYsGmbs?enablejsapi=1"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
+          id="videoAI"
+          width="720"
+          height="405"
+          src="https://www.youtube.com/embed/Rn-YBYsGmbs?enablejsapi=1"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
         </iframe>
       </div>
 
       <a href="quiz1.html" class="link-quiz">klik untuk mengakses sesi quiz</a>
-      <a href="lesson2.html" class="next-lesson" id="nextLesson">Pertemuan Selanjutnya</a>
-
-
     </div>
   </div>
-  <script>
-      // -------------------------
-      // 1. CEK STATUS PROGRESS
-      // -------------------------
-      let materiDibaca = localStorage.getItem("lesson1_materi") === "true";
-      let videoSelesai = localStorage.getItem("lesson1_video") === "true";
 
-      // Button quiz
-      const quizButton = document.querySelector(".link-quiz");
-
-      // Atur tombol quiz berdasarkan progress
-      function updateQuizButton() {
-        if (materiDibaca && videoSelesai) {
-          quizButton.style.pointerEvents = "auto";
-          quizButton.style.opacity = "1";
-          quizButton.innerText = "Mulai Quiz →";
-        } else {
-          quizButton.style.pointerEvents = "none";
-          quizButton.style.opacity = "0.5";
-          quizButton.innerText = "Selesaikan Materi & Video untuk Mulai Quiz";
-        }
-      }
-
-      updateQuizButton();
-
-      // -------------------------
-      // 2. DETEKSI SCROLL SAMPAI BAWAH
-      // -------------------------
-      window.addEventListener("scroll", () => {
-        const contentHeight = document.body.scrollHeight;
-        const scrollPos = window.innerHeight + window.scrollY;
-
-        if (scrollPos >= contentHeight - 20) {
-          materiDibaca = true;
-          localStorage.setItem("lesson1_materi", "true");
-          updateQuizButton();
-        }
-      });
-
-      // -------------------------
-      // 3. DETEKSI VIDEO SELESAI
-      // -------------------------
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player("videoAI", {
-          events: {
-            onStateChange: function (event) {
-              if (event.data === YT.PlayerState.ENDED) {
-                videoSelesai = true;
-                localStorage.setItem("lesson1_video", "true");
-                updateQuizButton();
-              }
-            }
-          }
-        });
-      }
-      </script>
-
-      <!-- YouTube API -->
+  <!-- JS External -->
+  <script src="kuncilesson1.js"></script>
   <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
-
