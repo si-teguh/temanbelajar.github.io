@@ -3,56 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video Pembelajaran - Teman Belajar</title>
+  <title>Pertemuan Ketiga - Peran AI di Kehidupan</title>
+
+  <!-- LINK CSS -->
   <link rel="stylesheet" href="style-vidio.css">
 </head>
+
 <body>
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
       <h2>Teman Belajar</h2>
-      <div class="menu">
-        <a href="pagehome.html">Home</a>
-        <a href="pageAI.html">Aktivitas</a>
-      </div>
     </div>
-    <div class="logout">Log Out</div>
-  </div>
 
+    <div class="nav-right">
+      <a href="pagehome.html">Home</a>
+      <a href="tentang.html">Tentang</a>
+      <button onclick="window.location.href='index.html'">Log Out</button>
+    </div>
+  </nav>
   <!-- Main Content -->
   <div class="main-content">
 
-    <div class="header">
-      <img src="assets/homepage/ORANG.png" alt="User">
-      <span>Fadhil Sirojul Masruro</span>
-    </div>
-
     <div class="content">
 
-      <div class="breadcrumb">
-        <span class="link" onclick="window.location.href='pembelajaran.html'">Pembelajaran</span> /
-        <span class="link">Video Pembelajaran</span>
+      <h1>Rangkuman Materi Kecerdasan Buatan (AI)</h1>
+
+      <h2>1. Ragam AI Berdasarkan Jenis dan Kemampuannya</h2>
+      <p>
+        Kecerdasan buatan atau Artificial Intelligence (AI) memiliki tingkat kemampuan yang berbeda-beda.
+        Tidak semua AI secanggih yang digambarkan dalam film, karena ada AI yang hanya mampu melakukan
+        satu tugas tertentu dan ada pula yang masih berupa konsep masa depan.
+      </p>
+
+      <p><strong>Berdasarkan kemampuannya, AI dibagi menjadi:</strong></p>
+      <ul>
+        <li><strong>AI Lemah (Narrow AI)</strong> — hanya mampu melakukan satu tugas khusus.</li>
+        <li><strong>AI Kuat (General AI)</strong> — memiliki kemampuan seperti manusia, namun masih berupa konsep.</li>
+        <li><strong>Superintelligence</strong> — AI yang lebih cerdas dari manusia, masih fiksi ilmiah.</li>
+      </ul>
+
+      <p><strong>Berdasarkan fungsinya, AI dibagi menjadi:</strong></p>
+      <ul>
+        <li><strong>Mesin Reaktif</strong> — merespons kondisi saat ini tanpa memori.</li>
+        <li><strong>Memori Terbatas</strong> — dapat belajar dari pengalaman jangka pendek.</li>
+        <li><strong>Teori Pikiran</strong> — mampu memahami emosi manusia (masih dikembangkan).</li>
+        <li><strong>Kesadaran Diri</strong> — AI tingkat paling tinggi, masih fiksi.</li>
+      </ul>
+
+      <h2>2. Prompt Engineering</h2>
+      <p>
+        AI Generatif seperti <strong>ChatGPT</strong>, <strong>Gemini</strong>, dan <strong>Grok</strong>
+        mampu menghasilkan teks, ide, dan solusi berdasarkan perintah yang diberikan.
+      </p>
+
+      <p>
+        <strong>Prompt Engineering</strong> adalah seni dan teknik memberikan perintah kepada AI
+        secara jelas dan tepat agar hasil yang dihasilkan sesuai dengan kebutuhan pengguna.
+        Semakin jelas perintah, semakin baik hasil yang diperoleh.
+      </p>
+
+      <h2>3. Peran AI dalam Kehidupan</h2>
+      <p>
+        AI telah menjadi bagian dari kehidupan sehari-hari, seperti rekomendasi musik di Spotify,
+        kamera smartphone yang mendeteksi wajah, dan Google Maps yang memberikan rute tercepat.
+      </p>
+
+      <p>
+        Ke depan, AI berperan besar di berbagai bidang seperti pendidikan, kesehatan, dan lingkungan.
+        AI membantu pembelajaran yang lebih personal, deteksi penyakit lebih cepat, serta pengelolaan
+        lingkungan yang lebih efisien.
+      </p>
+
+      <p>
+        Namun, penggunaan AI harus disertai dengan etika dan tanggung jawab. Dengan memahami AI sejak dini,
+        kita dapat menjadi generasi digital yang cerdas, kreatif, dan beretika.
+      </p>
+
+      <div class="note">
+        📌 <strong>Kesimpulan:</strong> AI adalah alat bantu yang sangat bermanfaat jika digunakan
+        secara bijak dan bertanggung jawab.
       </div>
 
-      <p>Silahkan video ini diakses oleh Teman-teman, dan Quiznya diselesaikan.</p>
-
-      <div style="position:relative; width:100%; max-width:1088px; margin:auto;">
-        <iframe 
-          src="https://kelompok5.h5p.com/content/1292761193849893979/embed"
-          aria-label="Video Pembelajaran AI"
-          width="1088"
-          height="637"
-          frameborder="0"
-          allowfullscreen="allowfullscreen"
-          allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *">
-        </iframe>
-
-        <script src="https://kelompok5.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>
-      </div>
-
+    <div class="video-container">
+      <iframe 
+        src="https://www.youtube.com/embed/wZDBPWCElMU?si=uwyPPz4qU4oya6s4"
+        title="Video Pembelajaran AI"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
     </div>
-  </div>
 
+      <a href="quizakhir.html" class="link-quiz">klik untuk mengakses Evaluasi BAB 2</a>
 </body>
 </html>

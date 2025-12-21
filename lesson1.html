@@ -7,35 +7,24 @@
   <link rel="stylesheet" href="style-lesson1.css">
 </head>
 <body>
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div>
-      <h2>Teman Belajar</h2>
-      <div class="menu">
-        <a href="pagehome.html">Home</a>
-        <a href="pembelajaran.html">Aktivitas</a>
-      </div>
-    </div>
-    <div class="logout" onclick="window.location.href='pagesignin.html'">Log Out</div>
-  </div>
 
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <h2>Teman Belajar</h2>
+    </div>
+
+    <div class="nav-right">
+      <a href="pagehome.html">Home</a>
+      <a href="tentang.html">Tentang</a>
+      <button onclick="window.location.href='index.html'">Log Out</button>
+    </div>
+  </nav>
   <!-- Main Content -->
   <div class="main-content">
-    <div class="header">
-      <img src="assets/homepage/ORANG.png" alt="User">
-      <span>Fadhil Sirojul Masruro</span>
-    </div>
-
-    <div class="content">
-      <div class="breadcrumb">
-        <span class="link" onclick="window.location.href='pembelajaran.html'">Pembelajaran</span>
-        <span class="link" onclick="window.location.href='pageAI.html'">/ Artificial Intelligence</span>
-        <span class="link" onclick="window.location.href='lesson1.html'">/ Pertemuan Pertama</span>
-      </div>
-
       <h2>Ragam AI dan Jenis Kemampuannya</h2>
 
-      <h3>Tujuan pembelajaran kali ini adalah agar kamu dapat mengenal dan membedakan jenis-jenis AI berdasarkan kemampuan dan fungsinya</h3>
+      <h3 class="tujuan">Tujuan pembelajaran kali ini adalah agar kamu dapat mengenal dan membedakan jenis-jenis AI berdasarkan kemampuan dan fungsinya</h3>
 
       <p>
         Di dunia nyata, kecerdasan buatan atau AI (Artificial Intelligence) hadir dalam berbagai tingkat kemampuan.
@@ -88,17 +77,6 @@
           allowfullscreen>
         </iframe>
       </div>
-      <a href="quiz1.html" class="link-quiz">klik untuk mengakses sesi quiz</a>
-      <button id="btnSelesai" class="selesai-btn">Selesai & Tandai Pertemuan</button>
-    </div>
-  </div>
-  <!-- Developer Panel -->
-  <div id="devPanel" class="dev-panel">
-    <h4>Developer Panel</h4>
-    <button id="btnResetDev">Reset Progress</button>
-  </div>
-  <!-- JS External -->
-  <script src="kuncilesson1.js"></script>
-  <script src="https://www.youtube.com/iframe_api"></script>
+       <a href="quiz1.html" class="link-quiz">klik untuk mengakses sesi quiz</a>
   </body>
 </html>

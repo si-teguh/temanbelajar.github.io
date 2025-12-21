@@ -4,40 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home - Teman Belajar</title>
-
-  <!-- Memanggil file CSS eksternal -->
   <link rel="stylesheet" href="style-pagehome.css">
 </head>
 <body>
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div>
-      <h2>Teman Belajar</h2>
-      <div class="menu">
-        <a href="pagehome.html">Home</a>
-        <a href="pembelajaran.html">Aktivitas</a>
-      </div>
-    </div>
-    <div class="logout" onclick="window.location.href='pagesignin.html'">Log Out</div>
-  </div>
 
-  <!-- Main Content -->
-  <div class="main-content">
-    <div class="header">
-      <img src="assets/homepage/ORANG.png" alt="User">
-      <span>Fadhil Sirojul Masruro</span>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <h2>Teman Belajar</h2>
     </div>
+
+    <div class="nav-right">
+      <a href="pagehome.html">Home</a>
+      <a href="tentang.html">Tentang</a>
+      <button onclick="window.location.href='index.html'">Log Out</button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
 
     <div class="cards">
 
-      <div class="card" onclick="window.location.href='profilesekolah2.html'">
-        <img src="assets/homepage/profilesekolah.png" alt="Profile Sekolah">
-        <div class="card-footer">Profile Sekolah</div>
-      </div>
-
-      <div class="card" onclick="window.location.href='pembelajaran.html'">
+      <div class="card" onclick="window.location.href='kelas.html'">
         <img src="assets/homepage/LOGO2.png" alt="Pembelajaran">
-        <div class="card-footer">Pembelajaran</div>
+        <div class="card-footer">Aktivitas</div>
       </div>
 
       <div class="card" onclick="window.location.href='profilepengembang.html'">
@@ -45,7 +36,13 @@
         <div class="card-footer">Profile Pengembang</div>
       </div>
 
+      <div class="card" onclick="window.location.href='profilesekolah2.html'">
+        <img src="assets/homepage/profilesekolah.png" alt="Profile Sekolah">
+        <div class="card-footer">Profile Sekolah</div>
+      </div>
+
     </div>
-  </div>
+  </main>
+
 </body>
 </html>

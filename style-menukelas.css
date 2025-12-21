@@ -8,14 +8,16 @@
 /* ================= BODY ================= */
 body {
   font-family: Arial, sans-serif;
-  background: #f4f4f4;
+  background-color: #f4f4f4;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ================= NAVBAR ================= */
 .navbar {
   height: 60px;
-  background: #4e6b82;
+  background-color: #4e6b82;
   color: white;
   display: flex;
   align-items: center;
@@ -46,9 +48,7 @@ body {
   transition: 0.3s;
 }
 
-.nav-right a:hover {
-  background: rgba(255,255,255,0.2);
-}
+.nav-right a:hover { background: rgba(255,255,255,0.2); }
 
 .nav-right button {
   background: #3d3d3d;
@@ -60,36 +60,56 @@ body {
   transition: 0.3s;
 }
 
-.nav-right button:hover {
-  background: #2f2f2f;
-}
+.nav-right button:hover { background-color: #2f2f2f; }
 
 /* ================= MAIN CONTENT ================= */
 .main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   padding: 40px;
 }
 
-/* ================= CARDS ================= */
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+  background: #e6e6e6;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.breadcrumb .link {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.breadcrumb .link:hover { color: #2f4557; }
+
+/* Cards */
 .cards {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
   justify-content: center;
+  margin-top: 40px;
 }
 
 .card {
-  background: #4e6b82;
+  background-color: #4e6b82;
   width: 200px;
   text-align: center;
   border-radius: 8px;
   overflow: hidden;
+  text-decoration: none;
+  color: white;
   cursor: pointer;
   transition: transform 0.2s;
 }
 
-.card:hover {
-  transform: scale(1.05);
-}
+.card:hover { transform: scale(1.05); }
 
 .card img {
   width: 100px;
@@ -98,7 +118,7 @@ body {
 }
 
 .card-footer {
-  background: #ccc;
+  background-color: #ccc;
   padding: 10px;
   font-weight: bold;
   color: #333;
@@ -106,35 +126,11 @@ body {
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    height: auto;
-    padding: 15px;
-    gap: 10px;
-  }
-
-  .nav-right {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .main-content {
-    padding: 20px;
-  }
-
-  .card {
-    width: 100%;
-    max-width: 280px;
-  }
+  .main-content { padding: 20px; }
+  .card { width: 45%; }
 }
 
 @media (max-width: 480px) {
-  .card img {
-    width: 80px;
-    height: 80px;
-  }
-
-  .card-footer {
-    font-size: 13px;
-  }
+  .card { width: 100%; }
+  .card img { width: 80px; height: 80px; }
 }

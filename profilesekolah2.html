@@ -8,31 +8,29 @@
 </head>
 <body>
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div>
+  <!-- NAVBAR (HARUS DI LUAR MAIN CONTENT) -->
+  <nav class="navbar">
+    <div class="nav-left">
       <h2>Teman Belajar</h2>
-      <div class="menu">
-        <a href="pagehome.html">Home</a>
-        <a href="pembelajaran.html">Aktivitas</a>
-      </div>
     </div>
-    <div class="logout" onclick="window.location.href='pagesignin.html'">Log Out</div>
-  </div>
 
-  <!-- Main Content -->
+    <div class="nav-right">
+      <a href="pagehome.html">Home</a>
+      <a href="tentang.html">Tentang</a>
+      <button onclick="window.location.href='index.html'">Log Out</button>
+    </div>
+  </nav>
+
+  <!-- WADAH KONTEN -->
   <div class="main-content">
-    <div class="header">
-      <img src="assets/homepage/ORANG.png" alt="User" />
-      <span>Fadhil Sirojul Masruro</span>
-    </div>
-
     <div class="content">
       <h1>Profile Sekolah</h1>
 
       <h3>Selayang Pandang</h3>
       <p>
-        SMK Negeri 4 Garut didirikan tahun 1968 dengan nama STM Negeri Leles. Kini berkembang menjadi sekolah dengan bidang keahlian Agribisnis, Teknologi Rekayasa, serta Teknologi Informasi dan Komunikasi.
+        SMK Negeri 4 Garut didirikan tahun 1968 dengan nama STM Negeri Leles.
+        Kini berkembang menjadi sekolah dengan bidang keahlian Agribisnis,
+        Teknologi Rekayasa, serta Teknologi Informasi dan Komunikasi.
       </p>
 
       <h3>A. Identitas Sekolah</h3>
@@ -42,7 +40,10 @@
         <strong>NPSN:</strong> 20209208<br>
         <strong>Alamat:</strong> Jalan Raya Karangpawitan Pos 44182<br>
         <strong>Telp/Fax:</strong> (0262) 444305<br>
-        <strong>Website:</strong> <a href="http://www.smkn4garut.sch.id" target="_blank">www.smkn4garut.sch.id</a><br>
+        <strong>Website:</strong>
+        <a href="http://www.smkn4garut.sch.id" target="_blank">
+          www.smkn4garut.sch.id
+        </a><br>
         <strong>Email:</strong> info@smkn4garut.sch.id
       </div>
 
@@ -52,6 +53,18 @@
       <p><strong>1997:</strong> SMK Negeri 4 Garut</p>
       <p><strong>2004:</strong> SMK Negeri 1 Karangpawitan</p>
       <p><strong>2008:</strong> SMK Negeri 4 Garut (Peraturan Bupati Garut No.446 Tahun 2008)</p>
+
+      <h3>C. Lokasi Sekolah</h3>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps?q=SMK+Negeri+4+Garut&output=embed"
+          width="100%"
+          height="350"
+          style="border:0; border-radius:8px;"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
     </div>
   </div>
 

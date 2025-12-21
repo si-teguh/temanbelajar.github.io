@@ -4,51 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pertemuan Kedua - Prompt Engineering</title>
-
-  <!-- LINK STYLE CSS -->
   <link rel="stylesheet" href="style-lesson2.css">
 </head>
-
 <body>
-
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
       <h2>Teman Belajar</h2>
-      <div class="menu">
-        <a href="pagehome.html">Home</a>
-        <a href="pembelajaran.html">Aktivitas</a>
-      </div>
     </div>
-    <div class="logout" onclick="window.location.href='pagesignin.html'">Log Out</div>
-  </div>
 
+    <div class="nav-right">
+      <a href="pagehome.html">Home</a>
+      <a href="tentang.html">Tentang</a>
+      <button onclick="window.location.href='index.html'">Log Out</button>
+    </div>
+  </nav>
   <!-- Main Content -->
   <div class="main-content">
 
-    <div class="header">
-      <img src="assets/homepage/ORANG.png" alt="User">
-      <span>Fadhil Sirojul Masruro</span>
-    </div>
-
     <div class="content">
-
-      <div class="breadcrumb">
-        <span class="link" onclick="window.location.href='pembelajaran.html'">Pembelajaran</span> /
-        <span class="link" onclick="window.location.href='pageAI.html'">Prompt Engineering</span> /
-        <span class="link">Pertemuan Kedua</span>
-      </div>
 
       <h2>Prompt Engineering</h2>
 
-      <h3>Tujuan pembelajaran bagian ini adalah agar kamu memahami bagaimana memberi perintah yang tepat kepada AI agar hasilnya maksimal</h3>
-
-      <p>Di era sekarang, kita bisa berinteraksi langsung dengan AI melalui tools modern yang disebut AI Generatif. Ini adalah AI yang bisa membuat sesuatu yang baru—teks, gambar, musik, bahkan kode komputer!</p>
+      <h3 class="tujuan">Tujuan pembelajaran kita kali ini adalah menyadari peran AI yang semakin luas dalam kehidupan kita, serta bagaimana kita bisa memanfaatkannya secara positif</h3>
 
       <img src="Assets/pembelajaran/chatgpt.png" class="responsive-img">
 
       <p>Beberapa contoh AI Generatif yang populer:</p>
-
       <ul>
         <li><strong>ChatGPT</strong> — bisa diajak ngobrol, menulis cerita, membantu mengerjakan soal.</li>
         <li><strong>Gemini</strong> — kemampuan multimodal, bisa memahami gambar dan suara.</li>
@@ -56,44 +38,19 @@
       </ul>
 
       <p><strong>Apa itu Prompt Engineering?</strong></p>
-
       <p>Prompt Engineering adalah seni dan teknik memberi perintah kepada AI secara tepat agar hasilnya sesuai harapan.</p>
 
-      <p>Prompt kurang tepat: “Tulis cerita.”  
-      Prompt tepat: “Tulis cerita petualangan tentang seekor kucing yang bisa bicara dan menjelajahi luar angkasa.”</p>
-
-      <p>Dengan memahami teknik prompt, kamu bisa lebih kreatif dan siap menghadapi dunia digital yang semakin canggih.</p>
-
-      <!-- ========= VIDEO BARU YANG ANDA MINTA ========= -->
-      <div style="display: flex; justify-content: center; margin: 20px 0;">
-        <iframe 
-            id="videoAI2"
-            width="720"
-            height="405"
+      <!-- ================= VIDEO ================= -->
+      <div class="video-container">
+        <iframe id="videoAI"
+            width="560" height="315"
             src="https://www.youtube.com/embed/qswSuk5EqjA?enablejsapi=1"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen>
         </iframe>
-    </div>
-
-    <a href="quiz1.html" class="link-quiz">klik untuk mengakses sesi quiz</a>
-    <button id="btnSelesai" class="selesai-btn">Selesai & Tandai Pertemuan</button>
-
-
-    </div>
-  </div>
-
-  <!-- Panel Dev -->
-  <div id="devPanel" class="dev-panel">
-    <h4>Developer Panel</h4>
-    <button id="btnResetDev">Reset Progress</button>
-  </div>
-
-  <!-- JS External -->
-  <script src="kuncilesson2.js"></script>
-  <script src="https://www.youtube.com/iframe_api"></script>
-
+      </div>
+     <a href="quiz2.html" class="link-quiz">klik untuk mengakses sesi quiz</a>
 </body>
 </html>

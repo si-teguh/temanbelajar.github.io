@@ -9,39 +9,28 @@
   <link rel="stylesheet" href="style-lesson3.css">
 </head>
 
-<body>
+<body></body>
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div>
+   <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
       <h2>Teman Belajar</h2>
-      <div class="menu">
-        <a href="pagehome.html">Home</a>
-        <a href="pembelajaran.html">Aktivitas</a>
-      </div>
     </div>
-    <div class="logout" onclick="window.location.href='pagesignin.html'">Log Out</div>
-  </div>
 
+    <div class="nav-right">
+      <a href="pagehome.html">Home</a>
+      <a href="tentang.html">Tentang</a>
+      <button onclick="window.location.href='index.html'">Log Out</button>
+    </div>
+  </nav>
   <!-- Main Content -->
   <div class="main-content">
 
-    <div class="header">
-      <img src="assets/homepage/ORANG.png" alt="User">
-      <span>Fadhil Sirojul Masruro</span>
-    </div>
-
     <div class="content">
-
-      <div class="breadcrumb">
-        <span class="link" onclick="window.location.href='pembelajaran.html'">Pembelajaran</span> /
-        <span class="link" onclick="window.location.href='pageAI.html'">Peran AI di Kehidupan</span> /
-        <span class="link">Pertemuan Ketiga</span>
-      </div>
 
       <h2>Peran AI dalam Kehidupan</h2>
       <p></p>
-      <h3>Tujuan pembelajaran kita kali ini adalah menyadari peran AI yang semakin luas dalam kehidupan kita, serta bagaimana kita bisa memanfaatkannya secara positif</h3>
+      <h3 class="tujuan">Tujuan pembelajaran kita kali ini adalah menyadari peran AI yang semakin luas dalam kehidupan kita, serta bagaimana kita bisa memanfaatkannya secara positif</h3>
       <p></p>
       <p>
         Sekarang, AI sudah menjadi bagian dari kehidupan kita. Coba perhatikan aktivitas sehari-hari kita  tanpa sadar, 
@@ -81,17 +70,6 @@
             allowfullscreen>
         </iframe>
       </div>
-        <a href="quiz3.html" class="link-quiz">Klik untuk mengakses sesi quiz</a>
-        <button id="btnSelesai" class="selesai-btn">Selesai & Tandai Pertemuan</button>
-      </div>
-      <!-- Panel Dev -->
-      <div id="devPanel" class="dev-panel">
-        <h4>Developer Panel</h4>
-        <button id="btnResetDev">Reset Progress</button>
-      </div>
-      <!-- JS External -->
-      <script src="kuncilesson3.js"></script>
-      <script src="https://www.youtube.com/iframe_api"></script>
-
+      <a href="quiz3.html" class="link-quiz">klik untuk mengakses sesi quiz</a>
 </body>
 </html>

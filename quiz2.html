@@ -2,45 +2,208 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pertemuan Kedua - Quiz 2</title>
-  <link rel="stylesheet" href="style-quiz2.css">
+  <title>Quiz Materi 2 - Prompt Engineering</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 30px;
+    }
+
+    .quiz-box {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .question p {
+      font-weight: bold;
+    }
+
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+      padding: 6px 8px;
+      border-radius: 6px;
+    }
+
+    .correct {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .wrong {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 8px;
+      background: #4e6b82;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #2f4557;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 15px;
+      border-radius: 8px;
+      display: none;
+      font-weight: bold;
+    }
+
+    .success {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .fail {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .next-btn {
+      display: none;
+      background: #2563eb;
+    }
+
+    .back-btn {
+      background: #6b7280;
+    }
+  </style>
 </head>
-
 <body>
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div>
-      <h2>Teman Belajar</h2>
-      <div class="menu">
-        <a href="pagehome.html">Home</a>
-        <a href="pembelajaran.html">Aktivitas</a>
-      </div>
+
+<div class="quiz-box">
+  <h2>Quiz Materi 2 - Prompt Engineering</h2>
+
+  <form id="quizForm">
+
+    <div class="question">
+      <p>6. ChatGPT termasuk ke dalam jenis AI …</p>
+      <label><input type="radio" name="q6" value="A"> A. Lemah (Narrow AI)</label>
+      <label><input type="radio" name="q6" value="B"> B. Kuat (General AI)</label>
+      <label><input type="radio" name="q6" value="C"> C. Superintelligence</label>
+      <label><input type="radio" name="q6" value="D"> D. Hybrid AI</label>
     </div>
-    <div class="logout" onclick="window.location.href='pagesignin.html'">Log Out</div>
+
+    <div class="question">
+      <p>7. Apa yang dimaksud dengan Prompt Engineering?</p>
+      <label><input type="radio" name="q7" value="A"> A. Seni menciptakan robot</label>
+      <label><input type="radio" name="q7" value="B"> B. Seni memberi instruksi kepada AI agar hasilnya sesuai keinginan</label>
+      <label><input type="radio" name="q7" value="C"> C. Teknik memprogram AI menggunakan Python</label>
+      <label><input type="radio" name="q7" value="D"> D. Proses membuat AI berpikir seperti manusia</label>
+    </div>
+
+    <div class="question">
+      <p>8. Contoh prompt yang kurang tepat menurut video adalah …</p>
+      <label><input type="radio" name="q8" value="A"> A. Tulislah cerita petualangan seekor kucing di luar angkasa.</label>
+      <label><input type="radio" name="q8" value="B"> B. Tulislah cerita.</label>
+      <label><input type="radio" name="q8" value="C"> C. Buatkan ringkasan tentang AI dalam pendidikan.</label>
+      <label><input type="radio" name="q8" value="D"> D. Tulis cerita tentang robot yang cerdas.</label>
+    </div>
+
+    <div class="question">
+      <p>9. Mengapa penting memberi perintah yang jelas kepada AI?</p>
+      <label><input type="radio" name="q9" value="A"> A. Agar AI bisa memahami emosi manusia</label>
+      <label><input type="radio" name="q9" value="B"> B. Agar hasil yang diberikan lebih akurat dan sesuai keinginan</label>
+      <label><input type="radio" name="q9" value="C"> C. Agar AI tidak rusak</label>
+      <label><input type="radio" name="q9" value="D"> D. Karena AI tidak bisa bekerja tanpa kode</label>
+    </div>
+
+    <button type="submit">Kirim Jawaban</button>
+  </form>
+
+  <div id="result" class="result"></div>
+
+  <div class="nav-buttons">
+    <a href="lesson2.html">
+      <button type="button" class="back-btn">⬅ Kembali ke Materi 2</button>
+    </a>
+
+    <a href="lesson3.html">
+      <button class="next-btn" id="nextBtn">Lanjut ke Materi 3</button>
+    </a>
   </div>
+</div>
 
-  <!-- Main Content -->
-  <div class="main-content">
-    <div class="header">
-      <img src="assets/homepage/ORANG.png" alt="User">
-      <span>Fadhil Sirojul Masruro</span>
-    </div>
+<script>
+  const form = document.getElementById('quizForm');
+  const resultBox = document.getElementById('result');
+  const nextBtn = document.getElementById('nextBtn');
 
-    <div class="content">
-      <div class="breadcrumb">
-        <span class="link" onclick="window.location.href='pageAI.html'">Aktivitas</span> /
-        <span class="link" onclick="window.location.href='pilihanquiz.html'">Quiz 2</span> /
-        <span class="link" onclick="window.location.href='lesson2.html'">Pertemuan Kedua</span>
-      </div>
+  const correctAnswers = {
+    q6: 'A',
+    q7: 'B',
+    q8: 'B',
+    q9: 'B'
+  };
 
-      <a href="https://forms.gle/egtoB7vbJHkeYm426" 
-        class="link-quiz" 
-        target="_blank">
-        Klik di sini untuk mengerjakan Quiz
-      </a>
-    </div>
-  </div>
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    let score = 0;
+    document.querySelectorAll('label').forEach(l => l.classList.remove('correct','wrong'));
+
+    for (let key in correctAnswers) {
+      const selected = form.querySelector(`input[name="${key}"]:checked`);
+      const correctValue = correctAnswers[key];
+
+      const correctInput = form.querySelector(`input[name="${key}"][value="${correctValue}"]`);
+      if (correctInput) {
+        correctInput.parentElement.classList.add('correct');
+      }
+
+      if (selected) {
+        if (selected.value === correctValue) {
+          score++;
+        } else {
+          selected.parentElement.classList.add('wrong');
+        }
+      }
+    }
+
+    resultBox.style.display = 'block';
+
+    if (score >= 3) {
+      resultBox.className = 'result success';
+      resultBox.innerHTML = `✅ Selamat! Nilai Anda ${score}/4.<br>Anda boleh melanjutkan ke Materi 3.`;
+      nextBtn.style.display = 'inline-block';
+    } else {
+      resultBox.className = 'result fail';
+      resultBox.innerHTML = `❌ Nilai Anda ${score}/4.<br>Silakan ulangi Materi 2 sebelum melanjutkan.`;
+      nextBtn.style.display = 'none';
+    }
+  });
+</script>
 
 </body>
 </html>

@@ -7,26 +7,20 @@
   <link rel="stylesheet" href="style-profiledevelopment.css">
 </head>
 <body>
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div>
+<!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
       <h2>Teman Belajar</h2>
-      <div class="menu">
-        <a href="pagehome.html">Home</a>
-        <a href="pembelajaran.html">Aktivitas</a>
-        <a href="menunilai.html">Nilai</a>
-      </div>
     </div>
-    <div class="logout" onclick="window.location.href='pagesignin.html'">Log Out</div>
-  </div>
 
+    <div class="nav-right">
+      <a href="pagehome.html">Home</a>
+      <a href="tentang.html">Tentang</a>
+      <button onclick="window.location.href='index.html'">Log Out</button>
+    </div>
+  </nav>
   <!-- Main Content -->
   <div class="main-content">
-    <div class="header">
-      <img src="assets/homepage/ORANG.png" alt="User">
-      <span>Fadhil Sirojul Masruro</span>
-    </div>
-
     <div class="content">
 
       <h1>Profile Pengembang</h1>
@@ -39,17 +33,28 @@
         <strong>Mahasiswa:</strong> IPI Garut</p>
 
         <p><strong>Nama:</strong> Fadhil Sirojul Masruro<br>
-        <strong>NIM:</strong> 2382003<br>
+        <strong>NIM:</strong> 2382007<br>
         <strong>Mahasiswa:</strong> IPI Garut</p>
 
         <p><strong>Nama:</strong> Tafqi Firmansyah<br>
-        <strong>NIM:</strong> 23832008<br>
+        <strong>NIM:</strong> 2382008<br>
         <strong>Mahasiswa:</strong> IPI Garut</p>
 
         <p>
           Kami adalah pengembang web yang berfokus pada pembuatan aplikasi berbasis web pembelajaran 
           untuk memaksimalkan media bahan ajar kepada murid-murid di sekolah.
         </p>
+        <h3>Kritik & Saran</h3>
+        <form>
+          <textarea placeholder="Tulis saran Anda..." rows="4"></textarea>
+          <br><br>
+          <button type="submit">Kirim</button>
+        </form>
+        <h3>Kontak Pengembang</h3>
+        <ul class="contact-list">
+          <li>Email: fadhil@gmail.com</li>
+          <li>WhatsApp: <a href="https://wa.me/682110075381" target="_blank">Chat WhatsApp</a></li>
+        </ul>
       </div>
     </div>
   </div>

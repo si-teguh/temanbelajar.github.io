@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Teman Belajar - Login & Register</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background-color: #7fa6b8; /* biru seperti gambar */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #fff;
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+
+    .card {
+      background-color: #3c3f4a;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      text-align: left;
+    }
+
+    .card h2 {
+      color: #fff;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #666;
+      background-color: #2f313a;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    input::placeholder {
+      color: #b0b0b0;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      background-color: #4f5dff;
+      color: #fff;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #3d49d6;
+    }
+
+    .switch {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #ddd;
+      text-align: center;
+    }
+
+    .switch span {
+      color: #4f9cff;
+      cursor: pointer;
+    }
+
+    #pesan {
+      margin-top: 15px;
+      color: #ffb3b3;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Teman Belajar</h1>
+
+    <div class="card">
+
+      <!-- LOGIN -->
+      <div id="loginBox">
+        <h2>Sign In</h2>
+        <input id="loginEmail" type="email" placeholder="Email">
+        <input id="loginPassword" type="password" placeholder="Password">
+        <button onclick="login()">Sign In</button>
+
+        <div class="switch">
+          Belum punya akun? <span onclick="showRegister()">Daftar</span>
+        </div>
+      </div>
+
+      <!-- REGISTER -->
+      <div id="registerBox" class="hidden">
+        <h2>Register</h2>
+        <input id="regEmail" type="email" placeholder="Email">
+        <input id="regPassword" type="password" placeholder="Password">
+        <input id="regNama" type="text" placeholder="Nama Lengkap">
+        <input id="regNisn" type="text" placeholder="NISN">
+        <button onclick="register()">Daftar</button>
+
+        <div class="switch">
+          Sudah punya akun? <span onclick="showLogin()">Login</span>
+        </div>
+      </div>
+
+      <p id="pesan"></p>
+    </div>
+  </div>
+
+  <!-- Firebase v8 SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAcB4nf6LpWl4_lYdWjiSJhVPA_Zd619QI",
+      authDomain: "teman-belajar-476bf.firebaseapp.com",
+      projectId: "teman-belajar-476bf",
+      storageBucket: "teman-belajar-476bf.appspot.com",
+      messagingSenderId: "78220122476",
+      appId: "1:78220122476:web:318a5afc32de2dcc6a3b49"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    function showRegister() {
+      document.getElementById("loginBox").classList.add("hidden");
+      document.getElementById("registerBox").classList.remove("hidden");
+      document.getElementById("pesan").innerText = "";
+    }
+
+    function showLogin() {
+      document.getElementById("registerBox").classList.add("hidden");
+      document.getElementById("loginBox").classList.remove("hidden");
+      document.getElementById("pesan").innerText = "";
+    }
+
+    function register() {
+      const email = regEmail.value;
+      const password = regPassword.value;
+      const nama = regNama.value;
+      const nisn = regNisn.value;
+
+      if (!email || !password || !nama || !nisn) {
+        alert("Semua field wajib diisi");
+        return;
+      }
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(res => {
+          return db.collection("users").doc(res.user.uid).set({
+            email,
+            namaLengkap: nama,
+            nisn,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+          });
+        })
+        .then(() => {
+          alert("Registrasi berhasil!");
+          showLogin();
+        })
+        .catch(err => alert(err.message));
+    }
+
+    function login() {
+      auth.signInWithEmailAndPassword(
+        loginEmail.value,
+        loginPassword.value
+      )
+      .then(() => {
+    window.location.href = "pagehome.html";
+        })
+        .catch(err => {
+            pesan.innerText = err.message;
+        });
+        }
+  </script>
+
+</body>
+</html>

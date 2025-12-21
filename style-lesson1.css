@@ -1,295 +1,196 @@
-/* ==========================================================
-   GLOBAL
-========================================================== */
+/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ================= BODY ================= */
 body {
   font-family: Arial, sans-serif;
-  display: flex;
-  height: 100vh;
-  background: #f4f4f4;
-}
-
-/* ==========================================================
-   SIDEBAR
-========================================================== */
-.sidebar {
-  width: 200px;
-  background: #4e6b82;
-  color: #fff;
+  background-color: #f4f4f4;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  height: 60px;
+  background-color: #4e6b82;
+  color: white;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  position: fixed;
-  inset: 0 auto 0 0;
+  padding: 0 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.sidebar h2 {
-  padding: 25px 20px;
-  font-size: 22px;
+.nav-left h2 {
+  font-size: 20px;
   font-weight: bold;
-  border-bottom: 1px solid #3d5568;
 }
 
-.menu {
+.nav-right {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
-.menu a {
+.nav-right a {
   text-decoration: none;
-  color: #fff;
-  padding: 15px 20px;
-  background: #3d5568;
-  border-bottom: 1px solid #2e3f4d;
+  color: white;
+  font-size: 15px;
+  padding: 8px 12px;
+  border-radius: 5px;
   transition: 0.3s;
 }
 
-.menu a:hover {
-  background: #2f4557;
+.nav-right a:hover {
+  background: rgba(255,255,255,0.2);
 }
 
-.logout {
+.nav-right button {
   background: #3d3d3d;
-  padding: 15px 20px;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
   cursor: pointer;
   transition: 0.3s;
 }
 
-.logout:hover {
+.nav-right button:hover {
   background: #2f2f2f;
 }
 
-/* ==========================================================
-   MAIN CONTENT
-========================================================== */
+/* ================= MAIN CONTENT ================= */
 .main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin-left: 200px;
-}
-
-.header {
-  background: #739bb2;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 15px 30px;
-}
-
-.header img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.content {
-  flex: 1;
-  padding: 30px 50px;
-  background: #fff;
-  margin: 30px;
+  padding: 40px;
+  max-width: 900px;
+  margin: 30px auto;
+  background: white;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow-y: auto;
 }
-
-.content p,
-.content ul {
-  line-height: 1.7;
-  color: #333;
-}
-
-.content ul {
-  margin-left: 20px;
-}
-
-.content li {
-  margin-bottom: 8px;
-}
-
-/* ==========================================================
-   BREADCRUMB
-========================================================== */
-.breadcrumb {
-  font-size: 14px;
-  background: #e6e6e6;
-  padding: 8px 12px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  color: #555;
-}
-
-.breadcrumb .link {
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  transition: 0.3s;
-}
-
-.breadcrumb .link:hover {
-  color: #2f4557;
-}
-
-/* ==========================================================
-   VIDEO + QUIZ LINK
-========================================================== */
-.video-container {
-  margin: 20px 0;
-}
-
-.link-quiz {
-  display: inline-block;
-  margin-top: 15px;
-  text-decoration: none;
-  color: #3366cc;
+/* ================= TUJUAN PEMBELAJARAN ================= */
+.tujuan {
+  background-color: #e6f0f7; /* warna latar ringan */
+  border-left: 5px solid #4e6b82; /* garis tegas di kiri */
+  padding: 12px 15px;
+  margin: 15px 0;
+  font-size: 18px;
   font-weight: bold;
+  color: #2f4557;
+  border-radius: 5px;
+}
+/* ================= JUDUL & SUBTITLE ================= */
+.main-content h2 {
+  font-size: 26px;
+  color: #2f4557;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.main-content h3 {
+  font-size: 18px;
+  font-weight: normal;
+  background: #eef4f8;
+  padding: 12px 15px;
+  border-left: 4px solid #4e6b82;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  color: #334155;
+}
+
+/* ================= PARAGRAF ================= */
+.main-content p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+.main-content ul {
+  list-style: disc;
+  padding-left: 25px;
+  margin-bottom: 15px;
+}
+
+.main-content ul li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+/* ================= VIDEO ================= */
+.main-content iframe {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* ================= LINK QUIZ ================= */
+.link-quiz {
+  display: block;
+  text-align: center;
+  margin: 20px auto 0 auto;
+  padding: 12px 20px;
+  background-color: #4e6b82;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
   transition: 0.3s;
 }
 
 .link-quiz:hover {
-  color: #1a3f8a;
-  text-decoration: underline;
+  background-color: #2f4557;
 }
 
-/* ==========================================================
-   RESPONSIVE TABLET
-========================================================== */
+/* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-  body {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .sidebar {
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-
-  .sidebar h2 {
-    font-size: 18px;
-    padding: 10px 0;
-    border: none;
-  }
-
-  .menu {
-    flex-direction: row;
-    gap: 15px;
-  }
-
-  .menu a {
-    background: none;
-    border: none;
-    padding: 10px 15px;
-  }
-
-  .menu a:hover {
-    background: rgba(255,255,255,0.2);
-    border-radius: 4px;
-  }
-
-  .logout {
-    display: none;
-  }
-
   .main-content {
-    margin-left: 0;
-  }
-
-  .content {
-    margin: 20px;
     padding: 20px;
+    margin: 20px;
+  }
+
+  .main-content h2 {
+    font-size: 22px;
+  }
+
+  .main-content h3 {
+    font-size: 16px;
+  }
+
+  .main-content p,
+  .main-content ul li {
+    font-size: 15px;
   }
 }
 
-/* ==========================================================
-   RESPONSIVE HP KECIL
-========================================================== */
 @media (max-width: 480px) {
-  .menu a {
-    font-size: 12px;
-    padding: 8px;
+  .main-content h2 {
+    font-size: 20px;
   }
 
-  .header img {
-    width: 55px;
-    height: 55px;
+  .main-content h3 {
+    font-size: 14px;
   }
 
-  .content {
-    margin: 15px;
-    padding: 15px;
+  .main-content p,
+  .main-content ul li {
+    font-size: 14px;
   }
 
-  p, 
-  ul li {
-    font-size: 13px;
+  .link-quiz {
+    padding: 10px 15px;
+    font-size: 14px;
   }
-}
-/* Di dalam file style-lesson2.css */
-
-.video-container {
-    text-align: center; /* Ini menengahkan elemen di dalamnya */
-    margin-top: 20px; /* Tambah sedikit jarak atas */
-    margin-bottom: 20px; /* Tambah sedikit jarak bawah */
-}
-
-.video-container video {
-    max-width: 100%; /* Memastikan video responsif di layar kecil */
-    height: auto;
-}
-.link-quiz {
-  display: block;
-  margin-top: 20px;
-  text-align: center;
-  padding: 12px;
-  background: #4e6b82;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  transition: 0.3s;
-  opacity: 0.5;
-  pointer-events: none;
-}
-/* ========== DEVELOPER PANEL (RAHASIA) ========== */
-.dev-panel {
-  display: none;              /* Tersembunyi default */
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #ffffff;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  z-index: 9999;
-}
-
-.dev-panel h4 {
-  margin-top: 0;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.dev-panel button {
-  padding: 8px 12px;
-  background: #d9534f;
-  border: none;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.dev-panel button:hover {
-  background: #c9302c;
 }

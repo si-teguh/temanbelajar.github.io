@@ -2,51 +2,174 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pertemuan Pertama - Quiz 1</title>
+  <title>Quiz Materi 1 - AI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 30px;
+    }
 
-  <!-- LINK KE FILE CSS -->
-  <link rel="stylesheet" href="style-quiz1.css">
+    .quiz-box {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .question p {
+      font-weight: bold;
+    }
+
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 8px;
+      background: #4e6b82;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #2f4557;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 15px;
+      border-radius: 8px;
+      display: none;
+      font-weight: bold;
+    }
+
+    .success {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .fail {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .next-btn {
+      display: none;
+      margin-top: 15px;
+      background: #2563eb;
+    }
+  </style>
 </head>
-
 <body>
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <div>
-      <h2>Teman Belajar</h2>
-      <div class="menu">
-        <a href="pagehome.html">Home</a>
-        <a href="pembelajaran.html">Aktivitas</a>
-      </div>
+<div class="quiz-box">
+  <h2>Quiz Materi 1 - Kecerdasan Buatan</h2>
+
+  <form id="quizForm">
+
+    <div class="question">
+      <p>1. Contoh penerapan Narrow AI dalam kehidupan sehari-hari adalah …</p>
+      <label><input type="radio" name="q1" value="A"> A. Jarvis dalam film Iron Man</label>
+      <label><input type="radio" name="q1" value="B"> B. Samantha dalam film Her</label>
+      <label><input type="radio" name="q1" value="C"> C. Google Assistant dan YouTube Recommendation</label>
+      <label><input type="radio" name="q1" value="D"> D. AI yang bisa membuat keputusan sendiri</label>
     </div>
 
-    <div class="logout" onclick="window.location.href='pagesignin.html'">Log Out</div>
-  </div>
-
-  <!-- MAIN CONTENT -->
-  <div class="main-content">
-
-    <div class="header">
-      <img src="assets/homepage/ORANG.png" alt="User">
-      <span>Fadhil Sirojul Masruro</span>
+    <div class="question">
+      <p>2. General AI memiliki kemampuan untuk …</p>
+      <label><input type="radio" name="q2" value="A"> A. Melakukan satu tugas spesifik saja</label>
+      <label><input type="radio" name="q2" value="B"> B. Meniru kecerdasan manusia sepenuhnya</label>
+      <label><input type="radio" name="q2" value="C"> C. Membaca pikiran manusia</label>
+      <label><input type="radio" name="q2" value="D"> D. Memberikan rekomendasi lagu di Spotify</label>
     </div>
 
-    <div class="content">
-      <div class="breadcrumb">
-        <span class="link" onclick="window.location.href='pembelajaran.html'">Pembelajaran</span> /
-        <span class="link" onclick="window.location.href='pilihanquiz.html'">Quiz 1</span> /
-        <span class="link" onclick="window.location.href='lesson1.html'">Pertemuan Pertama</span>
-      </div>
+    <div class="question">
+      <p>3. Mengapa Superintelligence belum ada di dunia nyata?</p>
+      <label><input type="radio" name="q3" value="A"> A. Karena terlalu mahal untuk dikembangkan</label>
+      <label><input type="radio" name="q3" value="B"> B. Karena teknologi tersebut masih dalam tahap penelitian dan simulasi</label>
+      <label><input type="radio" name="q3" value="C"> C. Karena AI tidak bisa berpikir logis</label>
+      <label><input type="radio" name="q3" value="D"> D. Karena tidak dibutuhkan manusia</label>
+    </div>
 
-      <a href="https://forms.gle/HksYWN4B56rh7CsM6" 
-         class="link-quiz" 
-         target="_blank">
-         Klik di sini untuk mengerjakan Quiz
+    <div class="question">
+      <p>4. Contoh Superintelligence yang disebutkan dalam naskah adalah …</p>
+      <label><input type="radio" name="q4" value="A"> A. Siri</label>
+      <label><input type="radio" name="q4" value="B"> B. Jarvis</label>
+      <label><input type="radio" name="q4" value="C"> C. Samantha dari film Her</label>
+      <label><input type="radio" name="q4" value="D"> D. Google Maps</label>
+    </div>
+
+    <button type="submit">Kirim Jawaban</button>
+  </form>
+
+  <div id="result" class="result"></div>
+
+  <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:15px;">
+      <a href="lesson1.html">
+        <button type="button" style="background:#6b7280;">⬅ Kembali ke Materi 1</button>
       </a>
 
+      <a href="lesson2.html">
+        <button class="next-btn" id="nextBtn">Lanjut ke Materi 2</button>
+      </a>
     </div>
-  </div>
+</div>
+
+<script>
+  const form = document.getElementById('quizForm');
+  const resultBox = document.getElementById('result');
+  const nextBtn = document.getElementById('nextBtn');
+
+  const correctAnswers = {
+    q1: 'C',
+    q2: 'B',
+    q3: 'B',
+    q4: 'C'
+  };
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    let score = 0;
+
+    for (let key in correctAnswers) {
+      const selected = form.querySelector(`input[name="${key}"]:checked`);
+      if (selected && selected.value === correctAnswers[key]) {
+        score++;
+      }
+    }
+
+    resultBox.style.display = 'block';
+
+    if (score >= 3) {
+      resultBox.className = 'result success';
+      resultBox.innerHTML = `✅ Selamat! Nilai Anda ${score}/4.<br>Anda boleh melanjutkan ke Materi 2.`;
+      nextBtn.style.display = 'inline-block';
+    } else {
+      resultBox.className = 'result fail';
+      resultBox.innerHTML = `❌ Nilai Anda ${score}/4.<br>Silakan ulangi Materi 1 sebelum melanjutkan.`;
+      nextBtn.style.display = 'none';
+    }
+  });
+</script>
 
 </body>
 </html>

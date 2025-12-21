@@ -2,46 +2,188 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pertemuan Ketiga - Quiz 3</title>
-  <link rel="stylesheet" href="style-quiz3.css">
+  <title>Quiz Materi 3 - AI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 30px;
+    }
+
+    .quiz-box {
+      max-width: 750px;
+      margin: auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .question p {
+      font-weight: bold;
+    }
+
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 8px;
+      background: #4e6b82;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #2f4557;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 15px;
+      border-radius: 8px;
+      display: none;
+      font-weight: bold;
+    }
+
+    .success {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .fail {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .nav-buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .next-btn {
+      display: none;
+      background: #2563eb;
+    }
+
+    .prev-btn {
+      background: #6b7280;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div>
-      <h2>Teman Belajar</h2>
-      <div class="menu">
-        <a href="pagehome.html">Home</a>
-        <a href="pembelajaran.html">Aktivitas</a>
-      </div>
+<div class="quiz-box">
+  <h2>Quiz Materi 3 - Penerapan & Etika AI</h2>
+
+  <form id="quizForm">
+
+    <div class="question">
+      <p>11. Contoh penggunaan AI di bidang kesehatan menurut video adalah …</p>
+      <label><input type="radio" name="q11" value="A"> A. Mengatur jadwal rumah sakit</label>
+      <label><input type="radio" name="q11" value="B"> B. Mendeteksi penyakit lebih cepat melalui analisis citra medis</label>
+      <label><input type="radio" name="q11" value="C"> C. Membuat resep obat secara manual</label>
+      <label><input type="radio" name="q11" value="D"> D. Mengganti pekerjaan dokter sepenuhnya</label>
     </div>
-    <div class="logout" onclick="window.location.href='pagesignin.html'">Log Out</div>
+
+    <div class="question">
+      <p>12. Dalam bidang pendidikan, AI berperan untuk …</p>
+      <label><input type="radio" name="q12" value="A"> A. Mengganti guru di kelas</label>
+      <label><input type="radio" name="q12" value="B"> B. Membuat siswa bermain game pembelajaran</label>
+      <label><input type="radio" name="q12" value="C"> C. Menyesuaikan pembelajaran sesuai kemampuan siswa</label>
+      <label><input type="radio" name="q12" value="D"> D. Mengawasi perilaku siswa</label>
+    </div>
+
+    <div class="question">
+      <p>13. Mengapa penting memahami etika penggunaan AI?</p>
+      <label><input type="radio" name="q13" value="A"> A. Agar AI tidak menjadi terlalu canggih</label>
+      <label><input type="radio" name="q13" value="B"> B. Karena AI tidak akan bijak jika manusianya tidak bijak</label>
+      <label><input type="radio" name="q13" value="C"> C. Untuk mempercepat perkembangan teknologi</label>
+      <label><input type="radio" name="q13" value="D"> D. Supaya semua orang bisa membuat AI sendiri</label>
+    </div>
+
+    <div class="question">
+      <p>14. Apa pesan akhir dari video pembelajaran tersebut?</p>
+      <label><input type="radio" name="q14" value="A"> A. AI akan menggantikan semua pekerjaan manusia</label>
+      <label><input type="radio" name="q14" value="B"> B. Belajar AI adalah hal yang berbahaya</label>
+      <label><input type="radio" name="q14" value="C"> C. Belajar AI berarti menyiapkan diri menjadi generasi digital yang bijak dan kreatif</label>
+      <label><input type="radio" name="q14" value="D"> D. AI hanya untuk orang yang ahli teknologi</label>
+    </div>
+
+    <div class="question">
+      <p>15. Kalimat "Belajar AI, belajar masa depan!" bermakna bahwa …</p>
+      <label><input type="radio" name="q15" value="A"> A. AI hanyalah tren sesaat</label>
+      <label><input type="radio" name="q15" value="B"> B. AI tidak relevan dengan dunia pendidikan</label>
+      <label><input type="radio" name="q15" value="C"> C. Mempelajari AI membantu kita siap menghadapi masa depan</label>
+      <label><input type="radio" name="q15" value="D"> D. AI adalah pengganti manusia sepenuhnya</label>
+    </div>
+
+    <button type="submit">Kirim Jawaban</button>
+  </form>
+
+  <div id="result" class="result"></div>
+
+  <div class="nav-buttons">
+    <a href="lesson3.html"><button type="button" class="prev-btn">⬅ Kembali ke Materi</button></a>
+    <a href="vidiopembelajaran.html"><button type="button" class="next-btn" id="nextBtn">Selesai</button></a>
   </div>
+</div>
 
-  <!-- Main Content -->
-  <div class="main-content">
-    <div class="header">
-      <img src="assets/homepage/ORANG.png" alt="User">
-      <span>Fadhil Sirojul Masruro</span>
-    </div>
+<script>
+  const form = document.getElementById('quizForm');
+  const resultBox = document.getElementById('result');
+  const nextBtn = document.getElementById('nextBtn');
 
-    <div class="content">
-      <div class="breadcrumb">
-        <span class="link" onclick="window.location.href='pembelajaran.html'">Pembelajaran</span> /
-        <span class="link" onclick="window.location.href='pilihanquiz.html'">Quiz 3</span> /
-        <span class="link" onclick="window.location.href='lesson3.html'">Pertemuan Ketiga</span>
-      </div>
+  const correctAnswers = {
+    q11: 'B',
+    q12: 'C',
+    q13: 'B',
+    q14: 'C',
+    q15: 'C'
+  };
 
-      <!-- Tombol Quiz -->
-      <a href="https://forms.gle/w1ivoqwdPRfJuR2g9" 
-        class="link-quiz" 
-        target="_blank">
-        Klik di sini untuk mengerjakan Quiz 
-      </a>
-    </div>
-  </div>
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    let score = 0;
+
+    for (let key in correctAnswers) {
+      const selected = form.querySelector(`input[name="${key}"]:checked`);
+      if (selected && selected.value === correctAnswers[key]) {
+        score++;
+      }
+    }
+
+    resultBox.style.display = 'block';
+
+    if (score >= 3) {
+      resultBox.className = 'result success';
+      resultBox.innerHTML = `✅ Selamat! Nilai Anda ${score}/5.<br>Anda telah menyelesaikan seluruh materi.`;
+      nextBtn.style.display = 'inline-block';
+    } else {
+      resultBox.className = 'result fail';
+      resultBox.innerHTML = `❌ Nilai Anda ${score}/5.<br>Silakan ulangi materi sebelum menyelesaikan pembelajaran.`;
+      nextBtn.style.display = 'none';
+    }
+  });
+</script>
 
 </body>
 </html>

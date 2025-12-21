@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Evaluasi Akhir AI</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 30px;
+    }
+    .quiz-box {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h2 { text-align: center; }
+    .question { margin-bottom: 20px; }
+    label { display: block; margin: 6px 0; cursor: pointer; }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #4e6b82;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    button:hover { background: #2f4557; }
+
+    .result {
+      margin-top: 25px;
+      padding: 15px;
+      border-radius: 8px;
+      display: none;
+      font-weight: bold;
+    }
+    .success { background: #dcfce7; color: #166534; }
+    .fail { background: #fee2e2; color: #991b1b; }
+
+    .nav-btn {
+      display: none;
+      margin-top: 15px;
+      background: #2563eb;
+    }
+  </style>
+</head>
+<body>
+
+<div class="quiz-box">
+  <h2>Evaluasi Akhir Materi AI</h2>
+
+  <form id="quizForm"></form>
+
+  <div id="result" class="result"></div>
+
+  <button class="nav-btn" id="homeBtn">Kembali ke Home</button>
+  <button class="nav-btn" id="materiBtn">Kembali ke Materi</button>
+</div>
+
+<script type="module">
+/* ================= FIREBASE ================= */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  getDocs,
+  orderBy,
+  limit,
+  doc,
+  setDoc,
+  getDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getAuth, onAuthStateChanged }
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAcB4nf6LpWl4_lYdWjiSJhVPA_Zd619QI",
+  authDomain: "teman-belajar-476bf.firebaseapp.com",
+  projectId: "teman-belajar-476bf",
+  storageBucket: "teman-belajar-476bf.firebasestorage.app",
+  messagingSenderId: "78220122476",
+  appId: "1:78220122476:web:318a5afc32de2dcc6a3b49",
+  measurementId: "G-F7FNLW6JM8"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+/* ================= DATA SOAL ================= */
+const questions = [
+  { q: 'AI yang hanya bisa melakukan satu tugas disebut …', o: ['General AI','Narrow AI','Superintelligence','Hybrid AI'], a: 1 },
+  { q: 'Contoh penerapan Narrow AI adalah …', o: ['Jarvis','Samantha','Google Assistant','AI mandiri'], a: 2 },
+  { q: 'General AI mampu …', o: ['Satu tugas','Meniru manusia','Membaca pikiran','Rekomendasi'], a: 1 },
+  { q: 'Superintelligence saat ini …', o: ['Digunakan luas','Nyata','Masih fiksi','Tidak mungkin'], a: 2 },
+  { q: 'AI tanpa memori disebut …', o: ['Limited Memory','Theory of Mind','Reactive Machine','Self Aware'], a: 2 },
+  { q: 'Contoh Limited Memory adalah …', o: ['Kalkulator','Deep Blue','Mobil otonom','Jam'], a: 2 },
+  { q: 'AI yang memahami emosi disebut …', o: ['Narrow','Theory of Mind','Reactive','General'], a: 1 },
+  { q: 'AI Generatif mampu …', o: ['Hitung','Buat konten','Atur jadwal','Simpan data'], a: 1 },
+  { q: 'Contoh AI Generatif …', o: ['Maps','Excel','ChatGPT','Kalkulator'], a: 2 },
+  { q: 'Prompt Engineering adalah …', o: ['Bahasa','Cara memberi perintah AI','Merakit robot','Coding'], a: 1 }
+];
+
+questions.sort(() => Math.random() - 0.5);
+
+/* ================= ELEMENT ================= */
+const form = document.getElementById("quizForm");
+const resultBox = document.getElementById("result");
+const homeBtn = document.getElementById("homeBtn");
+const materiBtn = document.getElementById("materiBtn");
+
+/* ================= RENDER SOAL ================= */
+questions.forEach((q, i) => {
+  let html = `<div class="question"><p>${i + 1}. ${q.q}</p>`;
+  q.o.forEach((opt, idx) => {
+    html += `<label>
+      <input type="radio" name="q${i}" value="${idx}"> ${opt}
+    </label>`;
+  });
+  html += "</div>";
+  form.innerHTML += html;
+});
+
+form.innerHTML += '<button type="submit">Kirim Jawaban</button>';
+
+/* ================= AMBIL PRESENSI ================= */
+async function ambilPresensi(email) {
+  const q = query(
+    collection(db, "presensi"),
+    where("email", "==", email),
+    orderBy("waktu", "desc"),
+    limit(1)
+  );
+
+  const snap = await getDocs(q);
+  if (snap.empty) return null;
+  return snap.docs[0].data();
+}
+
+/* ================= SIMPAN NILAI ================= */
+async function simpanNilai(nilai, presensi) {
+  const ref = doc(db, "nilai_evaluasi", presensi.nisn);
+
+  // Cegah submit ulang
+  const cek = await getDoc(ref);
+  if (cek.exists()) {
+    alert("Anda sudah mengerjakan evaluasi akhir");
+    return false;
+  }
+
+  const statusLulus = nilai >= 75 ? "LULUS" : "TIDAK LULUS";
+
+  await setDoc(ref, {
+    nama: presensi.nama,
+    nisn: presensi.nisn,
+    nilai: nilai,
+    statusLulus: statusLulus,
+    sumber: "presensi",
+    createdAt: serverTimestamp()
+  });
+
+  return true;
+}
+
+/* ================= AUTH CHECK ================= */
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    alert("Silakan login terlebih dahulu");
+    window.location.href = "index.html";
+    return;
+  }
+
+  console.log("Login sebagai:", user.email);
+});
+
+/* ================= SUBMIT QUIZ ================= */
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  let score = 0;
+  questions.forEach((q, i) => {
+    const pilih = form.querySelector(`input[name="q${i}"]:checked`);
+    if (pilih && parseInt(pilih.value) === q.a) score++;
+  });
+
+  const nilai = Math.round((score / questions.length) * 100);
+  resultBox.style.display = "block";
+
+  const user = auth.currentUser;
+  const presensi = await ambilPresensi(user.email);
+
+  if (!presensi) {
+    alert("Data presensi tidak ditemukan");
+    return;
+  }
+
+  if (presensi.statusKehadiran !== "Hadir") {
+    alert("Anda tidak tercatat hadir");
+    return;
+  }
+
+  const sukses = await simpanNilai(nilai, presensi);
+  if (!sukses) return;
+
+  if (nilai >= 75) {
+    resultBox.className = "result success";
+    resultBox.innerHTML = `✅ Selamat! Nilai Anda ${nilai}. Anda lulus.`;
+    homeBtn.style.display = "inline-block";
+    materiBtn.style.display = "none";
+  } else {
+    resultBox.className = "result fail";
+    resultBox.innerHTML = `❌ Nilai Anda ${nilai}. Nilai di bawah kriteria, silakan pelajari Bab 2 lagi.`;
+    materiBtn.style.display = "inline-block";
+    homeBtn.style.display = "none";
+  }
+});
+
+/* ================= NAVIGASI ================= */
+homeBtn.onclick = () => window.location.href = "pagehome.html";
+materiBtn.onclick = () => window.location.href = "lesson1.html";
+
+</script>
+</body>
+</html>
