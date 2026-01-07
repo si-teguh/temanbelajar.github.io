@@ -65,6 +65,7 @@
 </div>
 
 <script type="module">
+/* ================= FIREBASE ================= */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
   getFirestore,
@@ -72,62 +73,97 @@ import {
   query,
   where,
   getDocs,
+  orderBy,
+  limit,
   doc,
   setDoc,
   getDoc,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import {
-  getAuth,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, onAuthStateChanged }
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-/* ================= FIREBASE INIT ================= */
 const firebaseConfig = {
   apiKey: "AIzaSyAcB4nf6LpWl4_lYdWjiSJhVPA_Zd619QI",
   authDomain: "teman-belajar-476bf.firebaseapp.com",
   projectId: "teman-belajar-476bf",
+  storageBucket: "teman-belajar-476bf.firebasestorage.app",
+  messagingSenderId: "78220122476",
+  appId: "1:78220122476:web:318a5afc32de2dcc6a3b49"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+/* ================= DATA SOAL ================= */
+const questions = [
+  { q: 'AI yang hanya bisa melakukan satu tugas disebut …', o: ['General AI','Narrow AI','Superintelligence','Hybrid AI'], a: 1 },
+  { q: 'Contoh penerapan Narrow AI adalah …', o: ['Jarvis','Samantha','Google Assistant','AI mandiri'], a: 2 },
+  { q: 'General AI mampu …', o: ['Satu tugas','Meniru manusia','Membaca pikiran','Rekomendasi'], a: 1 },
+  { q: 'Superintelligence saat ini …', o: ['Digunakan luas','Nyata','Masih fiksi','Tidak mungkin'], a: 2 },
+  { q: 'AI tanpa memori disebut …', o: ['Limited Memory','Theory of Mind','Reactive Machine','Self Aware'], a: 2 },
+  { q: 'Contoh Limited Memory adalah …', o: ['Kalkulator','Deep Blue','Mobil otonom','Jam'], a: 2 },
+  { q: 'AI yang memahami emosi disebut …', o: ['Narrow','Theory of Mind','Reactive','General'], a: 1 },
+  { q: 'AI Generatif mampu …', o: ['Hitung','Buat konten','Atur jadwal','Simpan data'], a: 1 },
+  { q: 'Contoh AI Generatif …', o: ['Maps','Excel','ChatGPT','Kalkulator'], a: 2 },
+  { q: 'Prompt Engineering adalah …', o: ['Bahasa','Cara memberi perintah AI','Merakit robot','Coding'], a: 1 }
+];
+
+questions.sort(() => Math.random() - 0.5);
+
+/* ================= ELEMENT ================= */
+const form = document.getElementById("quizForm");
+const resultBox = document.getElementById("result");
+const homeBtn = document.getElementById("homeBtn");
+const materiBtn = document.getElementById("materiBtn");
+
+/* ================= RENDER SOAL ================= */
+questions.forEach((q, i) => {
+  let html = `<div class="question"><p>${i + 1}. ${q.q}</p>`;
+  q.o.forEach((opt, idx) => {
+    html += `
+      <label>
+        <input type="radio" name="q${i}" value="${idx}"> ${opt}
+      </label>`;
+  });
+  html += "</div>";
+  form.innerHTML += html;
+});
+
+form.innerHTML += `<button type="submit">Kirim Jawaban</button>`;
+
 /* ================= AMBIL PRESENSI ================= */
 async function ambilPresensi(email) {
   const q = query(
     collection(db, "presensi"),
-    where("email", "==", email)
+    where("email", "==", email),
+    orderBy("waktu", "desc"),
+    limit(1)
   );
 
   const snap = await getDocs(q);
   if (snap.empty) return null;
 
-  // Ambil presensi terbaru
-  return snap.docs
-    .map(d => d.data())
-    .sort((a, b) => b.waktu.seconds - a.waktu.seconds)[0];
+  console.log("DATA PRESENSI:", snap.docs[0].data());
+  return snap.docs[0].data();
 }
 
 /* ================= SIMPAN NILAI ================= */
 async function simpanNilai(nilai, presensi) {
-  const uid = auth.currentUser.uid;
-  const ref = doc(db, "nilai_evaluasi", uid);
+  const ref = doc(db, "nilai_evaluasi", presensi.nisn);
 
-  // Cegah submit ulang
   const cek = await getDoc(ref);
   if (cek.exists()) {
     alert("Anda sudah mengerjakan evaluasi akhir");
     return false;
   }
 
-  const statusLulus = nilai >= 75 ? "LULUS" : "TIDAK LULUS";
-
   await setDoc(ref, {
     nama: presensi.nama,
     nisn: presensi.nisn,
     nilai: nilai,
-    statusLulus: statusLulus,
+    statusLulus: nilai >= 75 ? "LULUS" : "TIDAK LULUS",
     sumber: "presensi",
     createdAt: serverTimestamp()
   });
@@ -136,28 +172,37 @@ async function simpanNilai(nilai, presensi) {
 }
 
 /* ================= AUTH CHECK ================= */
+let currentUser = null;
+
 onAuthStateChanged(auth, (user) => {
   if (!user) {
     alert("Silakan login terlebih dahulu");
     window.location.href = "index.html";
+    return;
   }
+  currentUser = user;
+  console.log("Login sebagai:", user.email);
 });
 
 /* ================= SUBMIT QUIZ ================= */
-document.getElementById("quizForm").addEventListener("submit", async (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  if (!currentUser) return;
+
   let score = 0;
-  questions.forEach((q, i) => {
-    const pilih = document.querySelector(`input[name="q${i}"]:checked`);
-    if (pilih && Number(pilih.value) === q.a) score++;
-  });
+  for (let i = 0; i < questions.length; i++) {
+    const pilih = form.querySelector(`input[name="q${i}"]:checked`);
+    if (!pilih) {
+      alert("Silakan jawab semua soal terlebih dahulu");
+      return;
+    }
+    if (parseInt(pilih.value) === questions[i].a) score++;
+  }
 
   const nilai = Math.round((score / questions.length) * 100);
 
-  const user = auth.currentUser;
-  const presensi = await ambilPresensi(user.email);
-
+  const presensi = await ambilPresensi(currentUser.email);
   if (!presensi) {
     alert("Data presensi tidak ditemukan");
     return;
@@ -171,10 +216,18 @@ document.getElementById("quizForm").addEventListener("submit", async (e) => {
   const sukses = await simpanNilai(nilai, presensi);
   if (!sukses) return;
 
-  alert("Nilai berhasil disimpan ke Firestore");
-});
-</script>
+  resultBox.style.display = "block";
 
+  if (nilai >= 75) {
+    resultBox.className = "result success";
+    resultBox.innerHTML = `✅ Selamat! Nilai Anda ${nilai}. Anda lulus.`;
+    homeBtn.style.display = "inline-block";
+  } else {
+    resultBox.className = "result fail";
+    resultBox.innerHTML = `❌ Nilai Anda ${nilai}. Nilai di bawah kriteria, silakan pelajari Bab 2 lagi.`;
+    materiBtn.style.display = "inline-block";
+  }
+});
 
 /* ================= NAVIGASI ================= */
 homeBtn.onclick = () => window.location.href = "pagehome.html";
