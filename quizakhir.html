@@ -89,8 +89,7 @@ const firebaseConfig = {
   projectId: "teman-belajar-476bf",
   storageBucket: "teman-belajar-476bf.firebasestorage.app",
   messagingSenderId: "78220122476",
-  appId: "1:78220122476:web:318a5afc32de2dcc6a3b49",
-  measurementId: "G-F7FNLW6JM8"
+  appId: "1:78220122476:web:318a5afc32de2dcc6a3b49"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -123,15 +122,16 @@ const materiBtn = document.getElementById("materiBtn");
 questions.forEach((q, i) => {
   let html = `<div class="question"><p>${i + 1}. ${q.q}</p>`;
   q.o.forEach((opt, idx) => {
-    html += `<label>
-      <input type="radio" name="q${i}" value="${idx}"> ${opt}
-    </label>`;
+    html += `
+      <label>
+        <input type="radio" name="q${i}" value="${idx}"> ${opt}
+      </label>`;
   });
   html += "</div>";
   form.innerHTML += html;
 });
 
-form.innerHTML += '<button type="submit">Kirim Jawaban</button>';
+form.innerHTML += `<button type="submit">Kirim Jawaban</button>`;
 
 /* ================= AMBIL PRESENSI ================= */
 async function ambilPresensi(email) {
@@ -144,6 +144,8 @@ async function ambilPresensi(email) {
 
   const snap = await getDocs(q);
   if (snap.empty) return null;
+
+  console.log("DATA PRESENSI:", snap.docs[0].data());
   return snap.docs[0].data();
 }
 
@@ -151,20 +153,17 @@ async function ambilPresensi(email) {
 async function simpanNilai(nilai, presensi) {
   const ref = doc(db, "nilai_evaluasi", presensi.nisn);
 
-  // Cegah submit ulang
   const cek = await getDoc(ref);
   if (cek.exists()) {
     alert("Anda sudah mengerjakan evaluasi akhir");
     return false;
   }
 
-  const statusLulus = nilai >= 75 ? "LULUS" : "TIDAK LULUS";
-
   await setDoc(ref, {
     nama: presensi.nama,
     nisn: presensi.nisn,
     nilai: nilai,
-    statusLulus: statusLulus,
+    statusLulus: nilai >= 75 ? "LULUS" : "TIDAK LULUS",
     sumber: "presensi",
     createdAt: serverTimestamp()
   });
@@ -173,13 +172,15 @@ async function simpanNilai(nilai, presensi) {
 }
 
 /* ================= AUTH CHECK ================= */
+let currentUser = null;
+
 onAuthStateChanged(auth, (user) => {
   if (!user) {
     alert("Silakan login terlebih dahulu");
     window.location.href = "index.html";
     return;
   }
-
+  currentUser = user;
   console.log("Login sebagai:", user.email);
 });
 
@@ -187,24 +188,27 @@ onAuthStateChanged(auth, (user) => {
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  if (!currentUser) return;
+
   let score = 0;
-  questions.forEach((q, i) => {
+  for (let i = 0; i < questions.length; i++) {
     const pilih = form.querySelector(`input[name="q${i}"]:checked`);
-    if (pilih && parseInt(pilih.value) === q.a) score++;
-  });
+    if (!pilih) {
+      alert("Silakan jawab semua soal terlebih dahulu");
+      return;
+    }
+    if (parseInt(pilih.value) === questions[i].a) score++;
+  }
 
   const nilai = Math.round((score / questions.length) * 100);
-  resultBox.style.display = "block";
 
-  const user = auth.currentUser;
-  const presensi = await ambilPresensi(user.email);
-
+  const presensi = await ambilPresensi(currentUser.email);
   if (!presensi) {
     alert("Data presensi tidak ditemukan");
     return;
   }
 
-  if (presensi.statusKehadiran !== "Hadir") {
+  if (presensi.status.toLowerCase() !== "hadir") {
     alert("Anda tidak tercatat hadir");
     return;
   }
@@ -212,23 +216,22 @@ form.addEventListener("submit", async (e) => {
   const sukses = await simpanNilai(nilai, presensi);
   if (!sukses) return;
 
+  resultBox.style.display = "block";
+
   if (nilai >= 75) {
     resultBox.className = "result success";
     resultBox.innerHTML = `✅ Selamat! Nilai Anda ${nilai}. Anda lulus.`;
     homeBtn.style.display = "inline-block";
-    materiBtn.style.display = "none";
   } else {
     resultBox.className = "result fail";
     resultBox.innerHTML = `❌ Nilai Anda ${nilai}. Nilai di bawah kriteria, silakan pelajari Bab 2 lagi.`;
     materiBtn.style.display = "inline-block";
-    homeBtn.style.display = "none";
   }
 });
 
 /* ================= NAVIGASI ================= */
 homeBtn.onclick = () => window.location.href = "pagehome.html";
 materiBtn.onclick = () => window.location.href = "lesson1.html";
-
 </script>
 </body>
 </html>
