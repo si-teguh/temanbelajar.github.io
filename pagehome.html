@@ -8,41 +8,110 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="nav-left">
-      <h2>Teman Belajar</h2>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-left">
+    <h2>Teman Belajar</h2>
+  </div>
+  <div class="nav-right">
+    <a href="pagehome.html">Home</a>
+    <button onclick="window.location.href='index.html'">Log Out</button>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="main-content">
+
+  <!-- INFORMASI WEBSITE -->
+  <div class="container">
+    <h1>Tentang Website Teman Belajar</h1>
+
+    <h2>1. Tujuan Website</h2>
+    <p>
+      Website <strong>Teman Belajar</strong> dibuat sebagai media pembelajaran berbasis web
+      yang membantu siswa belajar secara mandiri, terstruktur, dan interaktif.
+    </p>
+
+    <h2>2. Fungsi dan Manfaat</h2>
+    <ul>
+      <li>Materi pembelajaran terstruktur</li>
+      <li>Quiz evaluasi pemahaman</li>
+      <li>Presensi siswa</li>
+      <li>Mendorong pembelajaran digital</li>
+    </ul>
+
+    <h2>3. Cara Menggunakan Website</h2>
+    <p>
+      Pelajari materi secara berurutan agar pemahaman maksimal.
+    </p>
+
+    <h2>4. Penutup</h2>
+    <p>
+      Website ini dirancang untuk membentuk siswa yang mandiri, kritis, dan bertanggung jawab.
+    </p>
+
+    <div class="note">
+      💡 <strong>Catatan:</strong> Gunakan website ini secara bijak.
+    </div>
+  </div>
+
+  <!-- BUTTON MULAI -->
+  <div class="start-class">
+    <button id="btnMulai" disabled>🔒 Scroll hingga bawah untuk memulai</button>
+  </div>
+
+  <!-- CARDS -->
+  <div class="cards" id="cardKelas">
+    <div class="card">
+      <img src="assets/homepage/LOGO2.png">
+      <div class="card-footer">Aktivitas</div>
     </div>
 
-    <div class="nav-right">
-      <a href="pagehome.html">Home</a>
-      <a href="tentang.html">Tentang</a>
-      <button onclick="window.location.href='index.html'">Log Out</button>
+    <div class="card">
+      <img src="assets/homepage/ORANG.png">
+      <div class="card-footer">Profile Pengembang</div>
     </div>
-  </nav>
 
-  <!-- MAIN CONTENT -->
-  <main class="main-content">
-
-    <div class="cards">
-
-      <div class="card" onclick="window.location.href='kelas.html'">
-        <img src="assets/homepage/LOGO2.png" alt="Pembelajaran">
-        <div class="card-footer">Aktivitas</div>
-      </div>
-
-      <div class="card" onclick="window.location.href='profilepengembang.html'">
-        <img src="assets/homepage/ORANG.png" alt="Profile Pengembang">
-        <div class="card-footer">Profile Pengembang</div>
-      </div>
-
-      <div class="card" onclick="window.location.href='profilesekolah2.html'">
-        <img src="assets/homepage/profilesekolah.png" alt="Profile Sekolah">
-        <div class="card-footer">Profile Sekolah</div>
-      </div>
-
+    <div class="card">
+      <img src="assets/homepage/profilesekolah.png">
+      <div class="card-footer">Profile Sekolah</div>
     </div>
-  </main>
+  </div>
+
+</main>
+
+<!-- SCRIPT -->
+<script>
+  const btn = document.getElementById("btnMulai");
+  const cards = document.getElementById("cardKelas");
+  const cardItems = document.querySelectorAll(".card");
+
+  // AKTIFKAN TOMBOL SETELAH SCROLL
+  window.addEventListener("scroll", () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
+      btn.disabled = false;
+      btn.textContent = "🚀 Mulai Kelas";
+      btn.classList.add("active");
+    }
+  });
+
+  // TAMPILKAN CARD BERTAHAP
+  btn.addEventListener("click", () => {
+    btn.style.display = "none";
+    cards.style.display = "flex";
+
+    cardItems.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add("show");
+      }, index * 300);
+    });
+  });
+
+  // NAVIGASI CARD
+  cardItems[0].onclick = () => window.location.href = "kelas.html";
+  cardItems[1].onclick = () => window.location.href = "profilepengembang.html";
+  cardItems[2].onclick = () => window.location.href = "profilesekolah2.html";
+</script>
 
 </body>
 </html>
