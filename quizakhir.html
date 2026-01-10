@@ -123,6 +123,11 @@ button:hover {
 
 <div id="result" class="result"></div>
 
+<button id="homeBtn" style="display:none; background:#16a34a; margin-top:15px;">
+  ⬅ Kembali ke Home
+</button>
+
+
 </div>
 
 <script type="module">
@@ -251,11 +256,37 @@ form.addEventListener("submit", async(e)=>{
     createdAt: serverTimestamp()
   });
 
-  resultBox.style.display="block";
+  resultBox.style.display = "block";
   resultBox.className = nilai>=75 ? "result success":"result fail";
-  resultBox.innerHTML = nilai>=75
-    ? `✅ Selamat ${nama}, Anda LULUS dengan nilai ${nilai}`
-    : `❌ Nilai Anda ${nilai}. Silakan pelajari kembali materi.`;
+ const motivasiLulus = `
+🌟 Terima kasih telah menyelesaikan Evaluasi Akhir AI!<br><br>
+Kamu sudah menunjukkan pemahaman yang baik tentang kecerdasan buatan.<br>
+Teruslah belajar, karena teknologi berkembang sangat cepat dan kamu adalah bagian dari masa depan digital 🚀<br><br>
+Tetap rendah hati, terus berlatih, dan gunakan AI untuk hal-hal positif 💡
+`;
+
+const motivasiTidakLulus = `
+🌱 Terima kasih telah berusaha menyelesaikan Evaluasi Akhir AI.<br><br>
+Nilai bukanlah akhir dari segalanya. Setiap kesalahan adalah langkah menuju pemahaman yang lebih baik.<br>
+Jangan menyerah, terus belajar dan mencoba kembali — kamu pasti bisa! 💪✨<br><br>
+Ingat, belajar itu proses, bukan perlombaan.
+`;
+
+resultBox.style.display = "block";
+resultBox.className = nilai >= 75 ? "result success" : "result fail";
+resultBox.innerHTML = `
+<h3>Terima Kasih, ${nama} 🙏</h3>
+<p><b>Nilai:</b> ${nilai}</p>
+<p><b>Jawaban Benar:</b> ${score} dari ${questions.length}</p>
+<p><b>Status:</b> ${nilai >= 75 ? "LULUS ✅" : "BELUM LULUS ❌"}</p>
+<hr>
+<p>${nilai >= 75 ? motivasiLulus : motivasiTidakLulus}</p>
+
+<button onclick="location.href='pagehome.html'" style="margin-top:15px;">
+🏠 Kembali ke Home
+</button>
+`;
+
 });
 </script>
 
