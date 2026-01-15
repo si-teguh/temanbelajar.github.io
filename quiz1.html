@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Quiz Materi 1 - AI</title>
   <style>
     body {
@@ -76,6 +77,75 @@
       margin-top: 15px;
       background: #2563eb;
     }
+    /* =========================
+   RESPONSIVE SMARTPHONE
+   Android & iOS
+   ========================= */
+@media (max-width: 600px) {
+
+  body {
+    padding: 15px;
+  }
+
+  .quiz-box {
+    padding: 18px;
+    border-radius: 8px;
+  }
+
+  h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .question p {
+    font-size: 14px;
+  }
+
+  label {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  input[type="radio"] {
+    transform: scale(1.1);
+    margin-right: 6px;
+  }
+
+  button {
+    width: 100%;
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .result {
+    font-size: 14px;
+  }
+
+  /* Tombol navigasi bawah */
+  .quiz-box > div:last-child {
+    flex-direction: column;
+  }
+
+  .quiz-box a button {
+    width: 100%;
+  }
+}
+
+/* Extra kecil (HP lama / layar kecil) */
+@media (max-width: 360px) {
+
+  h2 {
+    font-size: 16px;
+  }
+
+  .question p {
+    font-size: 13px;
+  }
+
+  label {
+    font-size: 13px;
+  }
+}
   </style>
 </head>
 <body>
