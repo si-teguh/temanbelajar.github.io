@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Teman Belajar - Login & Register</title>
 
   <style>
@@ -117,6 +118,54 @@
     .toggle-password:hover {
       color: #fff;
     }
+    /* =========================
+   RESPONSIVE SMARTPHONE
+   ========================= */
+    @media (max-width: 480px) {
+
+    body {
+      padding: 20px;
+      align-items: flex-start;
+    }
+
+    .container {
+      max-width: 100%;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .card h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    input {
+      font-size: 14px;
+      padding: 11px 12px;
+    }
+
+    button {
+      font-size: 14px;
+      padding: 11px;
+    }
+
+    .switch {
+      font-size: 13px;
+    }
+
+    .toggle-password {
+      font-size: 11px;
+      right: 12px;
+    }
+  }
   </style>
 </head>
 <body>
