@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Evaluasi Akhir AI</title>
 
 <style>
@@ -98,6 +99,78 @@ button:hover {
   background: #fee2e2;
   color: #991b1b;
 }
+/* =========================
+   RESPONSIVE SMARTPHONE
+   Android & iOS
+   ========================= */
+@media (max-width: 600px) {
+
+  body {
+    padding: 15px;
+  }
+
+  .quiz-box {
+    padding: 18px;
+    border-radius: 10px;
+  }
+
+  h2 {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+
+  /* Form input */
+  .form-group label {
+    font-size: 14px;
+  }
+
+  .form-group input {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  /* Soal */
+  .question p {
+    font-size: 14px;
+  }
+
+  .question label {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  input[type="radio"] {
+    transform: scale(1.15);
+    margin-right: 6px;
+  }
+
+  /* Button */
+  button {
+    font-size: 14px;
+    padding: 13px;
+  }
+
+  .result {
+    font-size: 14px;
+  }
+}
+
+/* HP sangat kecil */
+@media (max-width: 360px) {
+
+  h2 {
+    font-size: 16px;
+  }
+
+  .question p {
+    font-size: 13px;
+  }
+
+  .question label {
+    font-size: 13px;
+  }
+}
+
 </style>
 </head>
 
