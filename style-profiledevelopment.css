@@ -158,16 +158,22 @@ body {
 .contact-list a:hover {
   text-decoration: underline;
 }
+/* ================= RESPONSIVE MOBILE ================= */
 
-/* ================= RESPONSIVE ================= */
+/* Tablet & HP */
 @media (max-width: 768px) {
   .main-content {
     padding: 20px;
-    margin: 20px;
+    margin: 15px;
   }
 
   .content h1 {
     font-size: 24px;
+  }
+
+  .profile-image {
+    width: 100%;
+    max-width: 380px;   /* gambar besar tapi tetap rapi */
   }
 
   .bio p {
@@ -177,15 +183,17 @@ body {
   .bio h3 {
     font-size: 16px;
   }
-
-  .profile-image {
-    width: 140px;
-  }
 }
 
+/* HP kecil */
 @media (max-width: 480px) {
   .content h1 {
     font-size: 20px;
+  }
+
+  .profile-image {
+    width: 100%;
+    max-width: 320px;   /* fokus besar di HP */
   }
 
   .bio p {
@@ -194,9 +202,5 @@ body {
 
   .bio h3 {
     font-size: 15px;
-  }
-
-  .profile-image {
-    width: 120px;
   }
 }
